@@ -22230,9 +22230,6 @@
 /area/medical/virology)
 "blV" = (
 /obj/structure/bed,
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/item/bedsheet/medical,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -22244,6 +22241,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/light/small/directional/north,
 /turf/open/floor/iron/dark,
 /area/medical/virology)
 "blW" = (
@@ -24296,13 +24294,9 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
-<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 10
 	},
-=======
-/obj/machinery/vending/wardrobe/viro_wardrobe,
->>>>>>> cere-restoration-project
 /turf/open/floor/iron/dark,
 /area/medical/virology)
 "bpW" = (
@@ -56984,9 +56978,6 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 4
 	},
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -56997,6 +56988,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/light/small/directional/north,
 /turf/open/floor/iron/dark,
 /area/medical/virology)
 "cOT" = (
