@@ -14,12 +14,15 @@
 	pass_flags = PASSTABLE
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_plas" = 0, "max_plas" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
-	maxHealth = 150
-	health = 150
+	maxHealth = 50
+	health = 50
 	healable = 0
-	obj_damage = 50
-	melee_damage_lower = 20
-	melee_damage_upper = 20
+	obj_damage = 0
+	melee_damage_lower = 5
+	melee_damage_upper = 5
+	wound_bonus = 10
+	bare_wound_bonus = 25
+	sharpness = SHARP_EDGED
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	vision_range = 1 // Only attack when target is close
@@ -34,13 +37,21 @@
 	var/melee_damage_disguised = 0
 	var/eat_while_disguised = FALSE
 	var/atom/movable/form = null
+	///How much of a reagent the mob injects on attack
+	var/poison_per_bite = 5
+	///What reagent the mob injects targets with
+	var/poison_type = /datum/reagent/toxin/heparin
 	var/static/list/blacklist_typecache = typecacheof(list(
 	/atom/movable/screen,
 	/obj/singularity,
 	/obj/energy_ball,
 	/obj/narsie,
 	/mob/living/simple_animal/hostile/morph,
-	/obj/effect))
+	/obj/effect,
+	/obj/structure,
+	/mob/living
+	))
+
 
 /mob/living/simple_animal/hostile/morph/Initialize(mapload)
 	. = ..()
@@ -71,6 +82,7 @@
 /mob/living/simple_animal/hostile/morph/proc/allowed(atom/movable/A) // make it into property/proc ? not sure if worth it
 	return !is_type_in_typecache(A, blacklist_typecache) && (isobj(A) || ismob(A))
 
+/*
 /mob/living/simple_animal/hostile/morph/proc/eat(atom/movable/A)
 	if(morphed && !eat_while_disguised)
 		to_chat(src, span_warning("You cannot eat anything while you are disguised!"))
@@ -80,7 +92,7 @@
 		A.forceMove(src)
 		return TRUE
 	return FALSE
-
+*/
 /mob/living/simple_animal/hostile/morph/ShiftClickOn(atom/movable/A)
 	if(!stat)
 		if(A == src)
@@ -96,7 +108,7 @@
 	morphed = TRUE
 	form = target
 
-	visible_message(span_warning("[src] suddenly twists and changes shape, becoming a copy of [target]!"), \
+//	visible_message(span_warning("[src] suddenly twists and changes shape, becoming a copy of [target]!"), \
 					span_notice("You twist your body and assume the form of [target]."))
 	appearance = target.appearance
 	copy_overlays(target)
@@ -140,7 +152,7 @@
 
 	med_hud_set_health()
 	med_hud_set_status() //we are not an object
-
+/*
 /mob/living/simple_animal/hostile/morph/death(gibbed)
 	if(morphed)
 		visible_message(span_warning("[src] twists and dissolves into a pile of green flesh!"), \
@@ -157,7 +169,7 @@
 
 /mob/living/simple_animal/hostile/morph/wabbajack_act(mob/living/new_mob)
 	barf_contents()
-	. = ..()
+	. = ..()*/
 
 /mob/living/simple_animal/hostile/morph/Aggro() // automated only
 	..()
@@ -186,6 +198,7 @@
 	if(morphed && !melee_damage_disguised)
 		to_chat(src, span_warning("You can not attack while disguised!"))
 		return
+/*
 	if(isliving(target)) //Eat Corpses to regen health
 		var/mob/living/L = target
 		if(L.stat == DEAD)
@@ -200,7 +213,7 @@
 				eat(I)
 			return
 	return ..()
-
+*/
 //Spawn Event
 
 /datum/round_event_control/morph
