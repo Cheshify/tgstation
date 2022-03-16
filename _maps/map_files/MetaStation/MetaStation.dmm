@@ -11369,7 +11369,7 @@
 /obj/structure/cable,
 /obj/machinery/door/firedoor/heavy,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "sci-toxins-passthrough"
+	cycle_id = "sci-ordnance-passthrough"
 	},
 /obj/machinery/door/airlock/research{
 	name = "Ordnance Gas Storage";
@@ -29500,7 +29500,7 @@
 	req_one_access_txt = "12;47"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "sci-toxins-passthrough"
+	cycle_id = "sci-ordnance-passthrough"
 	},
 /turf/open/floor/plating,
 /area/science/mixing/hallway)
@@ -40558,7 +40558,7 @@
 	name = "Ordnance Lab Shutters"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "sci-toxins-passthrough"
+	cycle_id = "sci-ordnance-passthrough"
 	},
 /turf/open/floor/iron/white,
 /area/science/mixing)
@@ -54828,10 +54828,10 @@
 /obj/machinery/door/airlock/maintenance{
 	req_one_access_txt = "12;47"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
-	cycle_id = "sci-toxins-passthrough"
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper_multi{
+	cycle_id = "sci-ordnance-passthrough"
+	},
 /turf/open/floor/plating,
 /area/science/mixing/hallway)
 "thR" = (
