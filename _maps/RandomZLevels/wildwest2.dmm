@@ -6,12 +6,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/textured,
 /area/space)
-"aH" = (
-/obj/structure/fence{
-	dir = 4
-	},
-/turf/open/misc/asteroid,
-/area/space)
 "aO" = (
 /obj/structure/shuttle/engine/propulsion/burst/left{
 	dir = 8
@@ -40,6 +34,12 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/dark,
+/area/space)
+"de" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/open/misc/asteroid,
 /area/space)
 "dg" = (
 /obj/structure/chair/comfy/shuttle{
@@ -422,9 +422,6 @@
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/mineral/titanium/purple,
 /area/space)
-"uf" = (
-/turf/closed/wall/mineral/sandstone,
-/area/space)
 "uu" = (
 /obj/structure/chair/sofa/corp/left{
 	dir = 1
@@ -696,10 +693,6 @@
 /obj/item/storage/medkit/emergency,
 /turf/open/floor/iron/dark,
 /area/space)
-"Gy" = (
-/obj/structure/fence/door,
-/turf/open/misc/asteroid,
-/area/space)
 "GZ" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
@@ -810,6 +803,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/rack,
 /turf/open/floor/pod/dark,
+/area/space)
+"Mt" = (
+/obj/structure/fence/door,
+/turf/open/misc/asteroid,
 /area/space)
 "MH" = (
 /obj/effect/turf_decal/sand/plating,
@@ -972,6 +969,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/textured,
+/area/space)
+"SK" = (
+/turf/closed/wall/mineral/sandstone,
 /area/space)
 "SL" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -16016,7 +16016,7 @@ Bi
 Bi
 Qc
 Qh
-Qh
+Wu
 Qh
 Qh
 Qh
@@ -16275,7 +16275,7 @@ Qc
 Qh
 Qh
 Qh
-Qh
+Wu
 Qh
 hH
 hH
@@ -17300,7 +17300,7 @@ Qh
 Qh
 Qh
 Qh
-Qh
+Wu
 Qh
 Qh
 Qh
@@ -20371,7 +20371,7 @@ Qh
 Qh
 Qh
 Qh
-Qh
+hd
 Qh
 Qh
 GZ
@@ -20883,7 +20883,7 @@ hH
 hH
 Qh
 Qh
-Qh
+Wu
 Qh
 Qh
 Qh
@@ -21656,7 +21656,7 @@ Qh
 Qh
 Qh
 Qh
-Qh
+yl
 GZ
 dA
 dA
@@ -22433,7 +22433,7 @@ dA
 Qh
 Qh
 Qh
-Qh
+hd
 Qh
 Qh
 hH
@@ -22934,7 +22934,7 @@ dA
 dA
 uy
 Qh
-Qh
+Wu
 hH
 hH
 hH
@@ -23200,12 +23200,12 @@ Qh
 Qh
 GZ
 GZ
-uf
-uf
-uf
-uf
-uf
-uf
+SK
+SK
+SK
+SK
+SK
+SK
 hH
 hH
 hH
@@ -23457,12 +23457,12 @@ Qh
 Qh
 dA
 dA
-uf
+SK
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -23714,12 +23714,12 @@ Qh
 dA
 dA
 dA
-uf
+SK
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -23961,24 +23961,24 @@ dA
 uy
 uy
 uy
+hd
 Qh
 Qh
 Qh
+hd
 Qh
-Qh
-Qh
-Qh
+yl
 GZ
 GZ
 Qh
-uf
+SK
 Qh
 Qh
 Qh
 Qh
-uf
-uf
-uf
+SK
+SK
+SK
 hH
 hH
 hH
@@ -24228,14 +24228,14 @@ Qh
 Qh
 Qh
 Qh
-uf
+SK
 Qh
 Qh
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -24485,14 +24485,14 @@ Qh
 Qh
 Qh
 Qh
-aH
+de
 Qh
 Qh
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -24740,16 +24740,16 @@ dA
 GZ
 Qh
 GZ
+yl
 Qh
-Qh
-aH
-Qh
-Qh
-Qh
+de
 Qh
 Qh
 Qh
-uf
+Qh
+Qh
+Qh
+SK
 hH
 hH
 hH
@@ -24995,18 +24995,18 @@ Qh
 Qh
 Qh
 Qh
+Wu
+Qh
+Qh
+Qh
+de
 Qh
 Qh
 Qh
 Qh
-aH
 Qh
 Qh
-Qh
-Qh
-Qh
-Qh
-uf
+SK
 hH
 hH
 hH
@@ -25256,14 +25256,14 @@ Qh
 GZ
 Qh
 Qh
-aH
+de
 Qh
 Qh
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -25513,14 +25513,14 @@ Qh
 dA
 GZ
 dA
-Gy
+Mt
 Qh
 Qh
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -25765,19 +25765,19 @@ uy
 Qh
 Qh
 Qh
-Qh
+Wu
 dA
 dA
 dA
 Qh
-aH
+de
 Qh
 Qh
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -26027,14 +26027,14 @@ dA
 dA
 dA
 Qh
-aH
+de
 Qh
 Qh
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -26284,14 +26284,14 @@ dA
 GZ
 Qh
 Qh
-aH
+de
 Qh
 Qh
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -26533,7 +26533,7 @@ uy
 dA
 dA
 uy
-Qh
+hd
 Qh
 Qh
 Qh
@@ -26541,14 +26541,14 @@ GZ
 Qh
 Qh
 Qh
-aH
+de
 Qh
 Qh
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -26798,14 +26798,14 @@ GZ
 Qh
 Qh
 Qh
-uf
+SK
 Qh
 Qh
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -27055,14 +27055,14 @@ GZ
 Qh
 Qh
 Qh
-uf
+SK
 Qh
 Qh
 Qh
 Qh
-uf
-uf
-uf
+SK
+SK
+SK
 hH
 hH
 hH
@@ -27298,10 +27298,10 @@ Qh
 Qh
 Qh
 Qh
-aH
+de
 Qh
 Qh
-Qh
+hd
 Qh
 Qh
 Qh
@@ -27312,12 +27312,12 @@ GZ
 Qh
 Qh
 Qh
-uf
+SK
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -27555,7 +27555,7 @@ Qh
 Qh
 Qh
 Qh
-aH
+de
 Qh
 Qh
 Qh
@@ -27569,12 +27569,12 @@ dA
 GZ
 Qh
 Qh
-uf
+SK
 Qh
 Qh
 Qh
 Qh
-uf
+SK
 hH
 hH
 hH
@@ -27826,12 +27826,12 @@ dA
 dA
 Qh
 Qh
-uf
-uf
-uf
-uf
-uf
-uf
+SK
+SK
+SK
+SK
+SK
+SK
 hH
 hH
 hH
@@ -28334,7 +28334,7 @@ hH
 hH
 hH
 Qh
-Qh
+hd
 Qh
 dA
 dA
@@ -28594,9 +28594,9 @@ Qh
 Qh
 Qh
 dA
-dA
+Wu
 Qh
-Qh
+Wu
 Qh
 hH
 hH
@@ -29621,7 +29621,7 @@ hH
 Qh
 Qh
 Qh
-Qh
+yl
 GZ
 Qh
 Qh
@@ -31160,13 +31160,13 @@ hH
 hH
 hH
 hH
-Qh
+hd
 Qh
 Qh
 dA
 dA
 Qh
-Qh
+hd
 hH
 hH
 hH
@@ -31422,7 +31422,7 @@ Qh
 Qh
 dA
 dA
-Qh
+yl
 hH
 hH
 hH
