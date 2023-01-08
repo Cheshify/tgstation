@@ -727,6 +727,7 @@
 #include "code\datums\ai\hauntium\haunted_controller.dm"
 #include "code\datums\ai\hauntium\hauntium_subtrees.dm"
 #include "code\datums\ai\hunting_behavior\hunting_behaviors.dm"
+#include "code\datums\ai\hunting_behavior\hunting_catslug.dm"
 #include "code\datums\ai\hunting_behavior\hunting_cockroach.dm"
 #include "code\datums\ai\hunting_behavior\hunting_mouse.dm"
 #include "code\datums\ai\idle_behaviors\_idle_behavior.dm"
