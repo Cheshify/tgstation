@@ -439,7 +439,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/toxin/slimejelly = 2) //they're squishy guys, makes sense to be slimey
 	tastes = list("slime" = 1, "slugcat"= 1, "regret" = 1, "immorality" = 1)
 
-/obj/item/food/meat/slab/catslug/MakeGrillable()
+/obj/item/food/meat/slab/catslug/make_grillable()
 	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/plain/catslug, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
 
 
