@@ -1,13 +1,15 @@
 /mob/living/basic/catslug
 	name = "catslug"
-	desc = "A strange creature, it's pretty nimble."
+	desc = "A nimble and seemingly intelligent little creature."
 	icon_state = "catslug"
 	icon_living = "catslug"
 	icon_dead = "catslug_dead"
 	held_state = "catslug"
 
-	maxHealth = 50
-	health = 50
+	melee_damage_lower = 3
+	melee_damage_upper = 5
+	maxHealth = 75
+	health = 75
 	see_in_dark = 6
 	density = FALSE
 	pass_flags = PASSTABLE|PASSGRILLE
@@ -28,16 +30,53 @@
 
 	ai_controller = /datum/ai_controller/basic_controller/catslug
 
+	//How much the catslug heals from eating
+	var/catslug_eating_heal = 15
+
 /mob/living/basic/catslug/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/pet_bonus, "purrs!")
 	add_verb(src, /mob/living/proc/toggle_resting)
 	ADD_TRAIT(src, TRAIT_VENTCRAWLER_ALWAYS, INNATE_TRAIT)
 
+//Collecting things!
+/mob/living/basic/catslug/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
+	. = ..()
+	if(!.)
+		return
+
+	if(!proximity_flag)
+		return
+
+	if(istype(attack_target, list(/mob/living/basic/cockroach)))
+		try_consume_cockroach(attack_target)
+		return TRUE
+
+	if(istype(attack_target, /mob/living/basic/mouse))
+		try_consume_mouse(attack_target)
+		return TRUE
+
+	if(istype(attack_target, /mob/living/simple_animal/hostile/lightgeist))
+		try_consume_lightgeist(attack_target)
+		return TRUE
+
+//Procs for eating things
+/mob/living/basic/catslug/proc/try_consume_cockroach(mob/living/basic/cockroach)
+	visible_message(
+		span_warning("[src] quickly grabs and eats \the [cockroach]."),
+		span_userdanger("You grab and stuff \the [cockroach] in your mouth, yum!")
+	)
+	//???
+	adjustHealth(-10)	
+	return ..()
+
 /datum/ai_controller/basic_controller/catslug
 	blackboard = list()
 
-	ai_traits = STOP_MOVING_WHEN_PULLED
+	ai_traits = STOP_MOVING_WHEN_PULLED | STOP_ACTING_WHILE_DEAD
 	ai_movement = /datum/ai_movement/basic_avoidance
 	idle_behavior = /datum/idle_behavior/idle_random_walk
-	planning_subtrees = list()
+	planning_subtrees = list(
+		/datum/ai_planning_subtree/find_and_hunt_target/catslug_food,
+		/datum/ai_planning_subtree/random_speech/catslug
+	)

@@ -110,3 +110,7 @@
 /datum/ai_planning_subtree/random_speech/faithless
 	speech_chance = 1
 	emote_see = list("wails.")
+
+/datum/ai_planning_subtree/random_speech/catslug
+	speech_chance = 1
+	emote_hear = list("purrs.", "meows.", "blorbles.")
