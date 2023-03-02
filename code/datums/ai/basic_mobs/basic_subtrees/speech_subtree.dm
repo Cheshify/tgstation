@@ -34,7 +34,7 @@
 		else
 			controller.queue_behavior(/datum/ai_behavior/perform_speech, pick(speak))
 
-/datum/ai_planning_subtree/random_speech/cockroach
+/datum/ai_planning_subtree/random_speech/insect
 	speech_chance = 5
 	emote_hear = list("chitters.")
 
@@ -114,3 +114,9 @@
 /datum/ai_planning_subtree/random_speech/catslug
 	speech_chance = 1
 	emote_hear = list("purrs.", "meows.", "blorbles.")
+
+/datum/ai_planning_subtree/random_speech/garden_gnome
+	speech_chance = 5
+	speak = list("Gnot a gnelf!", "Gnot a gnoblin!", "Howdy chum!")
+	emote_hear = list("snores.", "burps.")
+	emote_see = list("blinks.")
