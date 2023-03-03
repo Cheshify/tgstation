@@ -48,25 +48,17 @@
 	if(!proximity_flag)
 		return
 
-	if(istype(attack_target, list(/mob/living/basic/cockroach)))
-		try_consume_cockroach(attack_target)
-		return TRUE
-
-	if(istype(attack_target, /mob/living/basic/mouse))
-		try_consume_mouse(attack_target)
-		return TRUE
-
-	if(istype(attack_target, /mob/living/simple_animal/hostile/lightgeist))
-		try_consume_lightgeist(attack_target)
+	if(istype(attack_target, list(/mob/living/basic/cockroach, /mob/living/basic/mouse, /mob/living/simple_animal/hostile/lightgeist))))
+		try_consume_target(attack_target)
 		return TRUE
 
 //Procs for eating things
-/mob/living/basic/catslug/proc/try_consume_cockroach(mob/living/basic/cockroach)
+/mob/living/basic/catslug/proc/try_consume_target(attack_target)
 	visible_message(
-		span_warning("[src] quickly grabs and eats \the [cockroach]."),
-		span_userdanger("You grab and stuff \the [cockroach] in your mouth, yum!")
+		span_warning("[src] quickly grabs and eats \the [attack_target]."),
+		span_userdanger("You grab and stuff \the [attack_target] in your mouth, yum!")
 	)
-	//???
+	qdel(attack_target)
 	adjustHealth(-10)	
 	return ..()
 
