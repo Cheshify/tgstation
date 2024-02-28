@@ -1901,6 +1901,10 @@
 	hasinner = TRUE
 	color_src = HAIR_COLOR
 
+/datum/sprite_accessory/ears/cat/mangled
+	name = "mangled"
+	icon_state = "mangled_cat"
+
 /datum/sprite_accessory/ears/fox
 	icon = 'icons/mob/human/fox_features.dmi'
 	name = "Fox"

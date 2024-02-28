@@ -42,13 +42,16 @@
 		if(target_human.dna.features["ears"] == "Cat")
 			var/obj/item/organ/internal/ears/cat/ears = new
 			ears.Insert(target_human, movement_flags = DELETE_IF_REPLACED)
+		else if(target_human.dna.features["ears"] == "Mangled")
+			var/obj/item/organ/internal/ears/cat/mangled/ears = new
+			ears.Insert(target_human, movement_flags = DELETE_IF_REPLACED)
 		else
 			mutantears = /obj/item/organ/internal/ears
 	return ..()
 
 /datum/species/human/felinid/randomize_features(mob/living/carbon/human/human_mob)
 	var/list/features = ..()
-	features["ears"] = pick("None", "Cat")
+	features["ears"] = pick("None", "Cat", "Mangled")
 	return features
 
 /proc/mass_purrbation()

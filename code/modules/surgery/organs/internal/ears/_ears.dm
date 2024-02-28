@@ -67,12 +67,13 @@
 	icon_state = "kitty"
 	visual = TRUE
 	damage_multiplier = 2
+	var/cat_dna = "Cat"
 
 /obj/item/organ/internal/ears/cat/on_mob_insert(mob/living/carbon/human/ear_owner)
 	. = ..()
 	if(istype(ear_owner) && ear_owner.dna)
 		color = ear_owner.hair_color
-		ear_owner.dna.features["ears"] = ear_owner.dna.species.mutant_bodyparts["ears"] = "Cat"
+		ear_owner.dna.features["ears"] = ear_owner.dna.species.mutant_bodyparts["ears"] = cat_dna
 		ear_owner.dna.update_uf_block(DNA_EARS_BLOCK)
 		ear_owner.update_body()
 
@@ -82,6 +83,10 @@
 		color = ear_owner.hair_color
 		ear_owner.dna.species.mutant_bodyparts -= "ears"
 		ear_owner.update_body()
+
+/obj/item/organ/internal/ears/cat/mangled
+	name = "mangled cat ears"
+	cat_dna = "mangled"
 
 /obj/item/organ/internal/ears/penguin
 	name = "penguin ears"
