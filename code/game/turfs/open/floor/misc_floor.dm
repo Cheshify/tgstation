@@ -360,6 +360,15 @@
 	desc = "Melted down oil can, in some cases, be used to pave road surfaces."
 	icon_state = "asphalt"
 
+/turf/open/floor/asphalt/crowbar_act(mob/user, obj/item/crowbar)
+	user.balloon_alert(user, "too tough for a crowbar!")
+	return FALSE
+
+/turf/open/floor/asphalt/attackby(obj/item/attack_item, mob/user, params)
+	if(attack_item.tool_behaviour == TOOL_MINING)
+		if(do_after(user, 1.5 SECONDS))
+			return make_plating(attack_item, user)
+
 /turf/open/floor/asphalt/outdoors
 	planetary_atmos = TRUE
 
