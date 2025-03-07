@@ -14,12 +14,8 @@
 	var/max_asphalt = 100
 	// If the machine is running
 	var/enabled = FALSE
-
-/obj/machinery/paver/add_context(atom/source, list/context, obj/item/held_item, mob/user)
-	. = ..()
-	context[SCREENTIP_CONTEXT_LMB] = "Fill with material"
-	context[SCREENTIP_CONTEXT_RMB] = "Turn off/on"
-	return CONTEXTUAL_SCREENTIP_SET
+	// Sound when the machine is on
+	var/datum/looping_sound/paver/paver_on
 
 //Returns how much asphalt is in the machine
 /obj/machinery/paver/proc/get_asphalt(mob/user)
@@ -39,6 +35,7 @@
 		return
 	if(get_asphalt() <= 1)
 		return
+	Shake(pixelshiftx = 1, pixelshifty = 1, duration = 0.5 SECONDS, shake_interval = 0.02 SECONDS)
 	target_plating = target_plating.place_on_top(turf_paved, flags = CHANGETURF_INHERIT_AIR)
 	playsound(target_plating, 'sound/items/weapons/genhit.ogg', 50, TRUE)
 	return target_plating
@@ -96,6 +93,15 @@
 /obj/machinery/paver/proc/toggle()
 	enabled = !enabled
 	playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
-//	if (enabled == TRUE)
 
-//Shake(pixelshiftx = 1, pixelshifty = 0, duration = duration) (need to use this somewhere)
+/obj/machinery/paver/interact(mob/user)
+	.=..()
+	toggle()
+	update_appearance()
+	if(enabled)
+		balloon_alert(user, "turned on!")
+		add_shared_particles(/particles/smoke/burning)
+	if(!enabled)
+		remove_shared_particles(/particles/smoke/burning)
+		balloon_alert(user, "turned off!")
+	return TRUE
