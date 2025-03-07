@@ -96,5 +96,6 @@
 /obj/machinery/paver/proc/toggle()
 	enabled = !enabled
 	playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
+//	if (enabled == TRUE)
 
-//Shake(pixelshiftx = 1, pixelshifty = 0, duration = duration)
+//Shake(pixelshiftx = 1, pixelshifty = 0, duration = duration) (need to use this somewhere)
