@@ -354,9 +354,33 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 				message = deaf_message
 				return show_message(message, MSG_VISUAL, deaf_message, deaf_type, avoid_highlight)
 			return FALSE
+<<<<<<< HEAD
 		// Out of message range but within eavesdrop range - alter displayed message
 		if(outside_dist > 0)
 			raw_message = stars(raw_message)
+=======
+		if(!isturf(speaker.loc)) // If they're inside of something, probably can't see them speak
+			return FALSE
+
+		// But we can still see them speak
+		if(speaker_is_signing)
+			deaf_message = "[span_name("[chat_name_color_prefs_check(speaker, src)]")] [speaker.get_default_say_verb()] something, but the motions are too subtle to make out from afar." // DOPPLER EDIT - Colored chat names - ORIGINAL: deaf_message = "[span_name("[speaker]")] [speaker.get_default_say_verb()] something, but the motions are too subtle to make out from afar."
+		else if(can_hear()) // If we can't hear we want to continue to the default deaf message
+			if(isliving(speaker))
+				var/mob/living/living_speaker = speaker
+				var/mouth_hidden = living_speaker.is_mouth_covered() || HAS_TRAIT(living_speaker, TRAIT_FACE_COVERED)
+				if(!HAS_TRAIT(src, TRAIT_EMPATH) && mouth_hidden) // Can't see them speak if their mouth is covered or hidden, unless we're an empath
+					return FALSE
+
+			deaf_message = "[span_name("[chat_name_color_prefs_check(speaker, src)]")] [speaker.verb_whisper] something, but you are too far away to hear [speaker.p_them()]." // DOPPLER EDIT - Colored chat names - ORIGNAL: deaf_message = "[span_name("[speaker]")] [speaker.verb_whisper] something, but you are too far away to hear [speaker.p_them()]."
+
+		if(deaf_message)
+			deaf_type = MSG_VISUAL
+			message = deaf_message
+			show_message(message, MSG_VISUAL, deaf_message, deaf_type, avoid_highlight)
+			return FALSE
+
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 
 	// we need to send this signal before compose_message() is used since other signals need to modify
 	// the raw_message first. After the raw_message is passed through the various signals, it's ready to be formatted
@@ -393,7 +417,11 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	if(speaker != src)
 		if(!radio_freq) //These checks have to be separate, else people talking on the radio will make "You can't hear yourself!" appear when hearing people over the radio while deaf.
+<<<<<<< HEAD
 			deaf_message = "[speaker_name] [speaker.get_default_say_verb()] something but you cannot hear [speaker.p_them()]."
+=======
+			deaf_message = "[span_name("[chat_name_color_prefs_check(speaker, src)]")] [speaker.get_default_say_verb()] something but you cannot hear [speaker.p_them()]." // DOPPLER EDIT - Colored chat names - ORIGINAL: deaf_message = "[span_name("[speaker]")] [speaker.get_default_say_verb()] something but you cannot hear [speaker.p_them()]."
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 			deaf_type = MSG_VISUAL
 	else
 		deaf_message = span_notice("You can't hear yourself!")

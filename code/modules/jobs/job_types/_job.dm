@@ -191,13 +191,17 @@
 
 /// Announce that this job as joined the round to all crew members.
 /// Note the joining mob has no client at this point.
-/datum/job/proc/announce_job(mob/living/joining_mob, job_title) // DOPPLER EDIT: alt title support
+/datum/job/proc/announce_job(mob/living/joining_mob, job_title) // DOPPLER EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: /datum/job/proc/announce_job(mob/living/joining_mob)
 	if(head_announce)
+<<<<<<< HEAD
 <<<<<<< HEAD
 		announce_head(joining_mob, head_announce, job_title) // DOPPLER EDIT: alt title support
 =======
 		announce_head(joining_mob, list(head_announce))
 >>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
+=======
+		announce_head(joining_mob, head_announce, job_title) // DOPPLER EDIT CHANGE - ALTERNATIVE_JOB_TITLES - Original: announce_head(joining_mob, head_announce)
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 
 
 //Used for a special check of whether to allow a client to latejoin as this job.
@@ -237,10 +241,18 @@
 	dna.species.pre_equip_species_outfit(equipping, src, visual_only)
 	equip_outfit_and_loadout(equipping.get_outfit(consistent), player_client?.prefs, visual_only)
 
-/datum/job/proc/announce_head(mob/living/carbon/human/human, channels, job_title) // DOPPLER EDIT: alternative job titles//tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+// DOPPLER EDIT CHANGE START - ALTERNATIVE_JOB_TITLES
+/datum/job/proc/announce_head(mob/living/carbon/human/human, channels, job_title) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
+	if(human)
+		//timer because these should come after the captain announcement
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aas_config_announce), /datum/aas_config_entry/newhead, list("PERSON" = human.real_name, "RANK" = job_title), null, channels, null, TRUE), 1))
+// DOPPLER EDIT CHANGE END
+/** // DOPPLER EDIT CHANGE ORIGINAL START
+/datum/job/proc/announce_head(mob/living/carbon/human/human, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(human)
 		//timer because these should come after the captain announcement
 		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(aas_config_announce), /datum/aas_config_entry/newhead, list("PERSON" = human.real_name, "RANK" = human.job), null, channels, null, TRUE), 1))
+**/ // DOPPLER EDIT CHANGE ORIGINAL END
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/player)
@@ -327,11 +339,6 @@
 		info += span_boldnotice("As this station was initially staffed with a \
 			[CONFIG_GET(flag/jobs_have_minimal_access) ? "full crew, only your job's necessities" : "skeleton crew, additional access may"] \
 			have been added to your ID card.")
-	//DOPPLER EDIT ADDITION START - ALTERNATIVE_JOB_TITLES
-	if(alt_title != title)
-		info += span_warning("Remember that alternate titles are purely for flavor and roleplay.")
-		info += span_warning("Do not use your \"[alt_title]\" alt title as an excuse to forego your duties as a [title].")
-	//DOPPLER EDIT END
 
 	return info
 
@@ -686,6 +693,7 @@
 	if(!icon || !icon_state || icon_state == SECHUD_UNKNOWN)
 		CRASH("[src.type] has no job icon or icon state.")
 
+<<<<<<< HEAD
 	return icon(icon, icon_state)
 
 /datum/job/proc/display_order_with_department()
@@ -694,3 +702,6 @@
 		main_department = /datum/job_department/undefined
 
 	return display_order + (main_department::display_order * 1000)
+=======
+	return icon('modular_doppler/overwrites/huds/hud.dmi', icon_state) // DOPPLER EDIT CHANGE, ensuring job icon selected is the Doppler version, ORIGINAL: return icon('modular_doppler/overwrites/huds/hud.dmi', icon_state)
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e

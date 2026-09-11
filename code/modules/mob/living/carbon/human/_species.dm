@@ -896,12 +896,18 @@ GLOBAL_LIST_EMPTY(features_by_species)
 	var/kicking = (atk_effect == ATTACK_EFFECT_KICK)
 	var/final_armor_block = armor_block
 
+<<<<<<< HEAD
 	var/smack_sound = attacking_bodypart.unarmed_attack_sound
 	var/smack_attack = (atk_effect == ATTACK_EFFECT_KICK || atk_effect == ATTACK_EFFECT_PUNCH || atk_effect == ATTACK_EFFECT_SMASH)
 	if(smack_attack && attack_type == BRUTE && (affecting.bodytype & BODYTYPE_ROBOTIC))
 		smack_sound = 'sound/effects/bang.ogg'
 
 	playsound(target, smack_sound, atk_effect == ATTACK_EFFECT_SMASH ? 33 : 25, TRUE, -1)
+=======
+	// DOPPLER EDIT ADDITION BEGIN - Adds a signaler for the power system so that we can track if we land punches.
+	SEND_SIGNAL(user, COMSIG_HUMAN_UNARMED_HIT, target, affecting, damage, armor_block, limb_sharpness)
+	// DOPPLER EDIT ADDITION END
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 
 	if(kicking || grappled) //kicks and punches when grappling bypass armor slightly.
 		if(damage >= 12 || (damage >= 9 && prob(66)))

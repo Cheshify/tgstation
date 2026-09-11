@@ -464,6 +464,19 @@ GAME_VERB_SRC(/obj/item, move_to_top, oview(1), "Move To Top", null)
 	else if (siemens_coefficient <= 0.5)
 		.["partially insulated"] = "It is made from a poor insulator that will dampen (but not fully block) electric shocks passing through it."
 
+<<<<<<< HEAD
+=======
+	if(LAZYLEN(unique_reskin) && !current_skin)
+		.["reskinnable"] = "This item is able to be reskinned! Alt-Click to do so!"
+
+	// DOPPLER EDIT ADDITION START: Thaumaturges can examine items for affinity stat
+	if(affinity)
+		var/mob/living/living_user = isliving(user) ? user : null
+		if(isobserver(user) || (living_user && living_user.has_power_in_path(POWER_PATH_THAUMATURGE)))
+			.["affinity [affinity]"] = "Provides affinity [affinity] for thaumaturgic powers."
+	// DOPPLER EDIT ADDITION END
+
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 /obj/item/examine_descriptor(mob/user)
 	return "item"
 

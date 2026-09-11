@@ -76,6 +76,7 @@
 	relevant_organ = /obj/item/organ/wings/moth
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /datum/preference/choiced/moth_wings/init_possible_values()
 	return assoc_to_keys_features(SSaccessories.moth_wings_list)
 
@@ -92,3 +93,8 @@
 	var/datum/sprite_accessory/moth_wings = get_accessory_for_value(value)
 	return uni_icon(moth_wings.icon, "m_moth_wings_[moth_wings.icon_state]_BEHIND")
 >>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
+=======
+/datum/preference/choiced/species_feature/moth_wings/icon_for(value)
+	var/datum/sprite_accessory/moth_wings = get_accessory_for_value(value)
+	return uni_icon(moth_wings.icon, "m_moth_wings_[moth_wings.icon_state]_BEHIND")
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e

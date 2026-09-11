@@ -297,7 +297,7 @@
 #define DIGITIGRADE_LEGS "Digitigrade Legs"
 
 // Health/damage defines
-#define MAX_LIVING_HEALTH 150 //DOPPLER EDIT CHANGE - ORIGINAL: MAX_LIVING_HEALTH 100
+#define MAX_LIVING_HEALTH 100
 
 //for determining which type of heartbeat sound is playing
 ///Heartbeat is beating fast for hard crit
@@ -880,13 +880,13 @@ GLOBAL_ALIST_INIT(human_heights_to_offsets, alist(
 #define BRA_SOCKS_LAYER 29.5
 /// Underwear and undershirt
 #define UNDERWEAR_UNDERSHIRT 29.25
+/// This layer is used for things that shouldn't be over clothes, but should be over mutations
+#define BODY_FRONT_UNDER_CLOTHES_LAYER 29.1
 /// DOPPLER SHIFT ADDITION END
 /// Jumpsuit clothing layer
 #define UNIFORM_LAYER 29
 /// DOPPLER SHIFT ADDITION BEGIN
 #define BANDAGE_LAYER 28.5
-/// This layer is used for things that shouldn't be over clothes, but should be over mutations
-#define BODY_FRONT_UNDER_CLOTHES_LAYER 28.25
 /// DOPPLER SHIFT ADDITION END
 /// ID card layer
 #define ID_LAYER 28

@@ -165,7 +165,15 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	//Radio freq/name display
 	var/freqpart = radio_freq ? "\[[get_radio_name(radio_freq, radio_freq_name)]\] " : ""
 	//Speaker name
+<<<<<<< HEAD
 	var/namepart = message_mods[MODE_SPEAKER_NAME_OVERRIDE] || speaker.get_message_voice(visible_name)
+=======
+	var/namepart = speaker.get_message_voice(visible_name)
+	// DOPPLER ADDITION START - Coloured chat names
+	if(!radio_freq)
+		namepart = chat_name_color_prefs_check(speaker, src, namepart)
+	// DOPPLER ADDITION END
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 
 	//End name span.
 	var/endspanpart = "</span>"

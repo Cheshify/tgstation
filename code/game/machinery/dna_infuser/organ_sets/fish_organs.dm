@@ -280,6 +280,7 @@
 	//Initialize the related dna feature block if we don't have any so it doesn't error out.
 	//This isn't tied to any species, but I kinda want it to be mutable instead of having a fixed sprite accessory.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if(imprint_on_next_insertion && !receiver.dna.features[FEATURE_TAIL_FISH])
 		receiver.dna.features[FEATURE_TAIL_FISH] = /datum/sprite_accessory/tails/fish/none::name // DOPPLER EDIT, old code: receiver.dna.features[FEATURE_TAIL_FISH] = pick(SSaccessories.tails_list_fish)
 		receiver.dna.update_uf_block(/datum/dna_block/feature/tail_fish)
@@ -288,6 +289,11 @@
 		receiver.dna.features[feature_key] = pick(SSaccessories.feature_list[feature_key])
 		receiver.dna.update_uf_block(/datum/dna_block/feature/accessory/tail_fish)
 >>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
+=======
+	if(imprint_on_next_insertion && !receiver.dna.features[feature_key])
+		receiver.dna.features[feature_key] = pick(SSaccessories.feature_list[feature_key])
+		receiver.dna.update_uf_block(/datum/dna_block/feature/accessory/tail_fish)
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 
 	return ..()
 

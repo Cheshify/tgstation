@@ -137,9 +137,15 @@
 	var/mob/living/carbon/human/dummy/consistent/brother1 = new
 	var/mob/living/carbon/human/dummy/consistent/brother2 = new
 
+<<<<<<< HEAD
 	brother1.dna.features[FEATURE_MUTANT_COLOR] = GLOB.color_list_ethereal["Faint Red"]
+=======
+	turn_off_every_species_feature(brother1) // DOPPLER ADDITION - Fixes screenshot tests with features
+	brother1.dna.features[FEATURE_MUTANT_COLOR] = GLOB.color_list_ethereal["Faint Red"] // DOPPLER EDIT CHANGE - Allow Ethereals to set custom mtuant colors
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 	brother1.set_species(/datum/species/ethereal)
 
+	turn_off_every_species_feature(brother2) // DOPPLER ADDITION - Fixes screenshot tests with features
 	brother2.dna.features[FEATURE_MOTH_ANTENNAE] = "Plain"
 	brother2.dna.features[FEATURE_MOTH_MARKINGS] = "None"
 	brother2.dna.features[FEATURE_MOTH_WINGS] = "Plain"

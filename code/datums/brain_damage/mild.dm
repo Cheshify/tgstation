@@ -61,12 +61,18 @@
 	owner.add_mood_event("dumb", /datum/mood_event/oblivious)
 	return ..()
 
+<<<<<<< HEAD
 /datum/brain_trauma/mild/dumbness/on_life(seconds_per_tick)
+=======
+/* DOPPLER EDIT REMOVAL - Gets rid of Dumbness forcesay for LRP nature.
+/datum/brain_trauma/mild/dumbness/on_life(seconds_per_tick, times_fired)
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 	owner.adjust_derpspeech_up_to(5 SECONDS * seconds_per_tick, 50 SECONDS)
 	if(SPT_PROB(1.5, seconds_per_tick))
 		owner.emote("drool")
 	else if(!IS_UNCONSCIOUS_OR_CRIT(owner) && SPT_PROB(1.5, seconds_per_tick))
 		owner.say(pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"), forced = "brain damage", filterproof = TRUE)
+*/ // DOPPLER EDIT END
 
 /datum/brain_trauma/mild/dumbness/on_lose()
 	REMOVE_TRAIT(owner, TRAIT_DUMB, TRAUMA_TRAIT)

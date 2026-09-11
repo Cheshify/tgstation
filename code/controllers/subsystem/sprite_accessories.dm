@@ -42,6 +42,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	var/list/socks_list //! stores /datum/sprite_accessory/clothing/socks indexed by name
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//Lizard Bits (all datum lists indexed by name)
 	var/list/lizard_markings_list
 	var/list/snouts_list
@@ -49,27 +50,20 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	var/list/frills_list
 	var/list/spines_list
 	var/list/tail_spines_list
+=======
+	//All features, indexed by feature key, then name of the sprite accessory to the datum iteslf
+	var/list/list/feature_list
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 
-	//Mutant Human bits
-	var/list/tails_list_felinid
-	var/list/tails_list_lizard
-	var/list/tails_list_monkey
-	var/list/tails_list_xeno
-	var/list/tails_list_fish
-	var/list/ears_list
-	var/list/wings_list
-	var/list/wings_open_list
-	var/list/moth_wings_list
-	var/list/moth_antennae_list
-	var/list/moth_markings_list
-	var/list/caps_list
-	var/list/pod_hair_list
 	var/list/cached_mutant_icon_files = list() // DOPPLER ADDITION - caches files for the mutant parts system
+<<<<<<< HEAD
 =======
 	//All features, indexed by feature key, then name of the sprite accessory to the datum iteslf
 	var/list/list/feature_list
 >>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 
+=======
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 /datum/controller/subsystem/accessories/PreInit() // this stuff NEEDS to be set up before GLOB for preferences and stuff to work so this must go here. sorry
 	setup_lists()
 	init_hair_gradients()
@@ -103,6 +97,7 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	socks_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/clothing/socks)[DEFAULT_SPRITE_LIST]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	lizard_markings_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/lizard_markings)[DEFAULT_SPRITE_LIST]
 	tails_list_felinid = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/human)[DEFAULT_SPRITE_LIST] //DOPPLER EDIT, we remove the blank - old code: tails_list_felinid = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/human, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
 	tails_list_lizard = init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/lizard)[DEFAULT_SPRITE_LIST]
@@ -124,6 +119,8 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	moth_markings_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, add_blank = TRUE)[DEFAULT_SPRITE_LIST]
 	pod_hair_list = init_sprite_accessory_subtypes(/datum/sprite_accessory/pod_hair)[DEFAULT_SPRITE_LIST]
 =======
+=======
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 	feature_list = list()
 	// felinids
 	feature_list[FEATURE_TAIL_CAT] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/felinid)
@@ -132,24 +129,66 @@ SUBSYSTEM_DEF(accessories) // just 'accessories' for brevity
 	feature_list[FEATURE_FRILLS] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/frills)
 	feature_list[FEATURE_HORNS] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/horns)
 	feature_list[FEATURE_LIZARD_MARKINGS] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/lizard_markings)
-	feature_list[FEATURE_SNOUT] = INIT_ACCESSORY(/datum/sprite_accessory/snouts)
+	feature_list[FEATURE_SNOUT] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/snouts) // DOPPLER EDIT - OPTIONAL ACCESSORY - ORIGINAL: feature_list[FEATURE_SNOUT] = INIT_ACCESSORY(/datum/sprite_accessory/snouts)
 	feature_list[FEATURE_SPINES] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/spines)
 	feature_list[FEATURE_TAILSPINES] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tail_spines)
-	feature_list[FEATURE_TAIL_LIZARD] = INIT_ACCESSORY(/datum/sprite_accessory/tails/lizard)
+	feature_list[FEATURE_TAIL_LIZARD] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/lizard) // DOPPLER EDIT - OPTIONAL ACCESSORY - ORIGINAL: feature_list[FEATURE_TAIL_LIZARD] = INIT_ACCESSORY(/datum/sprite_accessory/tails/lizard)
 	// moths
-	feature_list[FEATURE_MOTH_WINGS] = INIT_ACCESSORY(/datum/sprite_accessory/moth_wings)
-	feature_list[FEATURE_MOTH_ANTENNAE] = INIT_ACCESSORY(/datum/sprite_accessory/moth_antennae)
+	feature_list[FEATURE_MOTH_WINGS] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/moth_wings) // DOPPLER EDIT - OPTIONAL ACCESSORY - ORIGINAL: feature_list[FEATURE_MOTH_WINGS] = INIT_ACCESSORY(/datum/sprite_accessory/moth_wings)
+	feature_list[FEATURE_MOTH_ANTENNAE] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/moth_antennae) // DOPPLER EDIT - OPTIONAL ACCESSORY - ORIGINAL: feature_list[FEATURE_MOTH_ANTENNAE] = INIT_ACCESSORY(/datum/sprite_accessory/moth_antennae)
 	feature_list[FEATURE_MOTH_MARKINGS] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/moth_markings)
 	// generic wings
 	feature_list[FEATURE_WINGS] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/wings)
 	feature_list[FEATURE_WINGS_OPEN] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/wings_open)
 	// generic features
+<<<<<<< HEAD
 	feature_list[FEATURE_MUSH_CAP] = INIT_ACCESSORY(/datum/sprite_accessory/caps)
 	feature_list[FEATURE_POD_HAIR] = INIT_ACCESSORY(/datum/sprite_accessory/pod_hair)
 	feature_list[FEATURE_TAIL_FISH] = INIT_ACCESSORY(/datum/sprite_accessory/tails/fish)
 	feature_list[FEATURE_TAIL_MONKEY] = INIT_ACCESSORY(/datum/sprite_accessory/tails/monkey)
 	feature_list[FEATURE_TAIL_XENO] = INIT_ACCESSORY(/datum/sprite_accessory/tails/xeno)
 >>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
+=======
+	feature_list[FEATURE_MUSH_CAP] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/caps) // DOPPLER EDIT - OPTIONAL ACCESSORY - ORIGINAL: feature_list[FEATURE_MUSH_CAP] = INIT_ACCESSORY(/datum/sprite_accessory/caps)
+	feature_list[FEATURE_POD_HAIR] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/pod_hair) // DOPPLER EDIT - OPTIONAL ACCESSORY - ORIGINAL: feature_list[FEATURE_POD_HAIR] = INIT_ACCESSORY(/datum/sprite_accessory/pod_hair)
+	feature_list[FEATURE_TAIL_FISH] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/fish) // DOPPLER EDIT - OPTIONAL ACCESSORY - ORIGINAL: feature_list[FEATURE_TAIL_FISH] = INIT_ACCESSORY(/datum/sprite_accessory/tails/fish)
+	feature_list[FEATURE_TAIL_MONKEY] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/monkey) // DOPPLER EDIT - OPTIONAL ACCESSORY - ORIGINAL: feature_list[FEATURE_TAIL_MONKEY] = INIT_ACCESSORY(/datum/sprite_accessory/tails/monkey)
+	feature_list[FEATURE_TAIL_XENO] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/xeno) // DOPPLER EDIT - OPTIONAL ACCESSORY - ORIGINAL: feature_list[FEATURE_TAIL_XENO] = INIT_ACCESSORY(/datum/sprite_accessory/tails/xeno)
+	// DOPPLER ADDITION BEGIN - Modular accessories
+	feature_list[FEATURE_BREASTS] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/breasts)
+	feature_list[FEATURE_WINGS] |= INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/wings_more)
+	feature_list[FEATURE_FLUFF] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/fluff)
+	feature_list[FEATURE_TAUR] = INIT_ACCESSORY(/datum/sprite_accessory/taur)
+	// Ear variations
+	feature_list[FEATURE_EARS_LIZARD] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/lizard)
+	feature_list[FEATURE_EARS_DOG] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/dog)
+	feature_list[FEATURE_EARS_FOX] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/fox)
+	feature_list[FEATURE_EARS_BUNNY] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/bunny)
+	feature_list[FEATURE_EARS_MOUSE] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/mouse)
+	feature_list[FEATURE_EARS_BIRD] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/bird)
+	feature_list[FEATURE_EARS_MONKEY] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/monkey)
+	feature_list[FEATURE_EARS_DEER] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/deer)
+	feature_list[FEATURE_EARS_FISH] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/fish)
+	feature_list[FEATURE_EARS_BUG] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/bug)
+	feature_list[FEATURE_EARS_HUMANOID] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/humanoid)
+	feature_list[FEATURE_EARS_CYBERNETIC] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/cybernetic)
+	feature_list[FEATURE_EARS_ALIEN] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/ears_more/alien)
+	feature_list[FEATURE_EARS_TESHARI] = INIT_ACCESSORY(/datum/sprite_accessory/ears_more/teshari)
+	// Tail variations
+	feature_list[FEATURE_TAIL_DOG] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/dog)
+	feature_list[FEATURE_TAIL_FOX] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/fox)
+	feature_list[FEATURE_TAIL_BUNNY] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/bunny)
+	feature_list[FEATURE_TAIL_MOUSE] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/mouse)
+	feature_list[FEATURE_TAIL_BIRD] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/bird)
+	feature_list[FEATURE_TAIL_DEER] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/deer)
+	feature_list[FEATURE_TAIL_BUG] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/bug)
+	feature_list[FEATURE_TAIL_CYBERNETIC] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/cybernetic)
+	feature_list[FEATURE_TAIL_HUMANOID] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/humanoid)
+	feature_list[FEATURE_TAIL_ALIEN] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/alien)
+	feature_list[FEATURE_TAIL_TESHARI] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/teshari)
+	feature_list[FEATURE_TAIL_ETHEREAL] = INIT_OPTIONAL_ACCESSORY(/datum/sprite_accessory/tails/ethereal)
+	// DOPPLER ADDITION END
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 
 /// This proc just initializes all /datum/sprite_accessory/hair_gradient into an list indexed by gradient-style name
 /datum/controller/subsystem/accessories/proc/init_hair_gradients()

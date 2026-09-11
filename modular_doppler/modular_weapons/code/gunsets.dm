@@ -112,3 +112,24 @@
 	new /obj/item/gun/ballistic/alacran(src)
 	new /obj/item/storage/box/alacran_dart(src)
 	new /obj/item/storage/belt/security/webbing/full(src)
+
+// for lord humongous in the murderdrome
+
+/obj/item/storage/belt/holster/filled_humongous/PopulateContents()
+	generate_items_inside(list(
+		/obj/item/ammo_box/speedloader/c357 = 2,
+		/obj/item/gun/ballistic/revolver/cowboy = 1,
+	), src)
+
+// Response Corps grenade launcher case that comes in their shuttle
+
+/obj/item/storage/toolbox/guncase/modular/munin
+	desc = "A thick gun case with foam inserts laid out to fit a weapon and a panoply of loose ammunition."
+
+/obj/item/storage/toolbox/guncase/modular/munin/PopulateContents()
+	new /obj/item/gun/ballistic/revolver/rotary_gl/smoke(src)
+	new /obj/item/ammo_box/magazine/ammo_stack/c980grenade/prefilled(src)
+	new /obj/item/ammo_box/magazine/ammo_stack/c980grenade/prefilled/shrapnel(src)
+	new /obj/item/ammo_box/magazine/ammo_stack/c980grenade/prefilled/sabot(src)
+	new /obj/item/ammo_box/magazine/ammo_stack/c980grenade/prefilled/ecm(src)
+	new /obj/item/ammo_box/magazine/ammo_stack/c980grenade/prefilled/smoke(src)

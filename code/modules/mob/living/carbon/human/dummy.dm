@@ -113,6 +113,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	target.dna.features[FEATURE_MUTANT_COLOR] = COLOR_VIBRANT_LIME
 <<<<<<< HEAD
 	target.dna.features[FEATURE_ETHEREAL_COLOR] = COLOR_WHITE
+<<<<<<< HEAD
 	target.dna.features[FEATURE_LIZARD_MARKINGS] = get_consistent_feature_entry(SSaccessories.lizard_markings_list)
 	target.dna.features[FEATURE_EARS] = get_consistent_feature_entry(SSaccessories.ears_list)
 	target.dna.features[FEATURE_FRILLS] = get_consistent_feature_entry(SSaccessories.frills_list)
@@ -134,6 +135,11 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	target.dna.features[FEATURE_BREASTS] = "Bare"
 	target.dna.features[FEATURE_TAUR] = "No Taur"
 	target.dna.features[FEATURE_FLUFF] = "No Fluff"
+=======
+	for(var/feature_key in SSaccessories.feature_list)
+		target.dna.features[feature_key] = get_consistent_feature_entry(SSaccessories.feature_list[feature_key])
+	// DOPPLER ADDITION START - Fix tri color features in dummies
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 	target.dna.features[FEATURE_EARS_COLORS] = DEFAULT_MATRIXED_FEATURE_COLORS
 	target.dna.features[FEATURE_MARKINGS_COLORS] = DEFAULT_MATRIXED_FEATURE_COLORS
 	target.dna.features[FEATURE_FRILLS_COLORS] = DEFAULT_MATRIXED_FEATURE_COLORS
@@ -147,7 +153,11 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	target.dna.features[FEATURE_MOTH_MARKS_COLORS] = DEFAULT_MATRIXED_FEATURE_COLORS
 	target.dna.features[FEATURE_ANTENNAE_COLORS] = DEFAULT_MATRIXED_FEATURE_COLORS
 	target.dna.features[FEATURE_POD_HAIR_COLORS] = DEFAULT_MATRIXED_FEATURE_COLORS
+<<<<<<< HEAD
 	// DOPPLER FEATURES END
+=======
+	// DOPPLER ADDITION END
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 	target.dna.initialize_dna(newblood_type = get_blood_type(BLOOD_TYPE_O_MINUS), create_mutation_blocks = FALSE, randomize_features = FALSE)
 =======
 	for(var/feature_key in SSaccessories.feature_list)

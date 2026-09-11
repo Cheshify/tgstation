@@ -1,6 +1,7 @@
 GLOBAL_LIST_INIT(crafting_category_food, list(
 	CAT_FOOD,
 	CAT_DRINK,
+	CAT_HEMOPHAGE, // DOPPLER ADDITION - Hemophage food
 ))
 
 GLOBAL_LIST_INIT(crafting_category, list(

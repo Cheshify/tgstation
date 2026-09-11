@@ -92,6 +92,7 @@
 /datum/techweb_node/mod_security
 	display_name = "Security Modular Suits"
 	description = "Security suits for space crime handling."
+<<<<<<< HEAD
 	prerequisite_nodes = list(/datum/techweb_node/mod_equip)
 	unlocked_designs = list(
 		/datum/design/module/mirage,
@@ -102,6 +103,18 @@
 		/datum/design/module/mod_sonar,
 		/datum/design/module/projectile_dampener,
 		/datum/design/module/criminalcapture,
+=======
+	prereq_ids = list(TECHWEB_NODE_MOD_EQUIP)
+	design_ids = list(
+		"mod_mirage_grenade",
+		"mod_stealth",
+		"mod_mag_harness",
+		"mod_pathfinder",
+		// "mod_holster", // DOPPLER REMOVAL - Unprintable holsters
+		"mod_sonar",
+		"mod_projectile_dampener",
+		"mod_criminalcapture",
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 	announce_channels = list(RADIO_CHANNEL_SCIENCE, RADIO_CHANNEL_SECURITY)

@@ -41,6 +41,18 @@
 	. = ..()
 	if(!ishuman(new_ethereal))
 		return
+<<<<<<< HEAD
+=======
+	default_color = new_ethereal.dna.features[FEATURE_MUTANT_COLOR] // DOPPLER EDIT CHANGE - Restores mutant color selection to Ethereals
+	RegisterSignal(new_ethereal, COMSIG_ATOM_EMAG_ACT, PROC_REF(on_emag_act))
+	RegisterSignal(new_ethereal, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp_act))
+	RegisterSignal(new_ethereal, COMSIG_ATOM_SABOTEUR_ACT, PROC_REF(hit_by_saboteur))
+	RegisterSignal(new_ethereal, COMSIG_LIGHT_EATER_ACT, PROC_REF(on_light_eater))
+	RegisterSignal(new_ethereal, COMSIG_LIVING_HEALTH_UPDATE, PROC_REF(refresh_light_color))
+	ethereal_light = new_ethereal.mob_light(light_type = /obj/effect/dummy/lighting_obj/moblight/species)
+	refresh_light_color(new_ethereal)
+
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 	var/obj/item/organ/heart/ethereal/ethereal_heart = new_ethereal.get_organ_slot(ORGAN_SLOT_HEART)
 <<<<<<< HEAD
 	ethereal_heart.ethereal_color = default_color
@@ -75,8 +87,147 @@
 	features[FEATURE_MUTANT_COLOR] = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
 	return features
 
+<<<<<<< HEAD
 /datum/species/ethereal/prepare_human_for_preview(mob/living/carbon/human/human)
 	human.dna.features[FEATURE_MUTANT_COLOR] = GLOB.color_list_ethereal["Green"]
+=======
+/datum/species/ethereal/proc/refresh_light_color(mob/living/carbon/human/ethereal)
+	SIGNAL_HANDLER
+	if(isnull(ethereal_light))
+		return
+	if(ethereal.stat != DEAD && !disrupted)
+		var/healthpercent = max(ethereal.health, 0) / 100
+		if(!emageffect)
+			var/static/list/skin_color = rgb2num("#eda495")
+			var/list/colors = rgb2num(ethereal.dna.features[FEATURE_MUTANT_COLOR]) // DOPPLER EDIT CHANGE - Restores mutant color selection to Ethereals
+			var/list/built_color = list()
+			for(var/i in 1 to 3)
+				built_color += skin_color[i] + ((colors[i] - skin_color[i]) * healthpercent)
+			current_color = rgb(built_color[1], built_color[2], built_color[3])
+
+		ethereal_light.set_light_range_power_color((1 + (2 * healthpercent)) * rangemult, (1 + (1 * healthpercent) * powermult), current_color)
+		if(flickering)
+			if(currently_flickered)
+				ethereal_light.set_light_on(FALSE)
+			else
+				ethereal_light.set_light_on(TRUE)
+		else
+			if(currently_flickered)
+				currently_flickered = FALSE
+			ethereal_light.set_light_on(TRUE)
+		fixed_mut_color = current_color
+		ethereal.update_body()
+		ethereal.set_facial_haircolor(current_color, override = TRUE, update = FALSE)
+		ethereal.set_haircolor(current_color, override = TRUE,  update = TRUE)
+	else
+		ethereal_light.set_light_on(FALSE)
+		var/dead_color = rgb(128,128,128)
+		fixed_mut_color = dead_color
+		ethereal.update_body()
+		ethereal.set_facial_haircolor(dead_color, override = TRUE, update = FALSE)
+		ethereal.set_haircolor(dead_color, override = TRUE, update = TRUE)
+
+/datum/species/ethereal/proc/on_emp_act(mob/living/carbon/human/source, severity, protection)
+	SIGNAL_HANDLER
+	if(protection & EMP_PROTECT_SELF)
+		return
+	disrupted = TRUE
+	refresh_light_color(source)
+	to_chat(source, span_notice("You feel the light of your body leave you."))
+	switch(severity)
+		if(EMP_LIGHT)
+			addtimer(CALLBACK(src, PROC_REF(stop_emp), source), 10 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 10 seconds
+		if(EMP_HEAVY)
+			addtimer(CALLBACK(src, PROC_REF(stop_emp), source), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE) //We're out for 20 seconds
+
+/datum/species/ethereal/proc/hit_by_saboteur(mob/living/carbon/human/source, disrupt_duration)
+	disrupted = TRUE
+	refresh_light_color(source)
+	to_chat(source, span_warning("Something inside of you crackles in a bad way."))
+	source.take_bodypart_damage(burn = 3, wound_bonus = CANT_WOUND)
+	addtimer(CALLBACK(src, PROC_REF(stop_emp), source), disrupt_duration, TIMER_UNIQUE|TIMER_OVERRIDE)
+	return TRUE
+
+/datum/species/ethereal/proc/on_emag_act(mob/living/carbon/human/source, mob/user)
+	SIGNAL_HANDLER
+	if(emageffect)
+		return FALSE
+	emageffect = TRUE
+	if(user)
+		to_chat(user, span_notice("You tap [source] on the back with your card."))
+	source.visible_message(span_danger("[source] starts flickering in an array of colors!"))
+	handle_emag(source)
+	addtimer(CALLBACK(src, PROC_REF(stop_emag), source), 2 MINUTES) //Disco mode for 2 minutes! This doesn't affect the ethereal at all besides either annoying some players, or making someone look badass.
+	return TRUE
+
+/// Special handling for getting hit with a light eater
+/datum/species/ethereal/proc/on_light_eater(mob/living/carbon/human/source, datum/light_eater)
+	SIGNAL_HANDLER
+	source.emp_act(EMP_LIGHT)
+	return COMPONENT_BLOCK_LIGHT_EATER
+
+/datum/species/ethereal/proc/stop_emp(mob/living/carbon/human/ethereal)
+	disrupted = FALSE
+	refresh_light_color(ethereal)
+	to_chat(ethereal, span_notice("You feel more energized as your shine comes back."))
+
+/datum/species/ethereal/proc/handle_emag(mob/living/carbon/human/ethereal)
+	if(!emageffect)
+		return
+	current_color = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)]
+	refresh_light_color(ethereal)
+	addtimer(CALLBACK(src, PROC_REF(handle_emag), ethereal), 0.5 SECONDS)
+
+/datum/species/ethereal/proc/stop_emag(mob/living/carbon/human/ethereal)
+	emageffect = FALSE
+	refresh_light_color(ethereal)
+	ethereal.visible_message(span_danger("[ethereal] stops flickering and goes back to their normal state!"))
+
+/datum/species/ethereal/proc/handle_glow_emote(mob/living/carbon/human/ethereal, power, range, flare = FALSE, duration = 5 SECONDS, flare_time = 0)
+	powermult = power
+	rangemult = range
+	refresh_light_color(ethereal)
+	addtimer(CALLBACK(src, PROC_REF(stop_glow_emote), ethereal, flare, flare_time), duration)
+
+/datum/species/ethereal/proc/stop_glow_emote(mob/living/carbon/human/ethereal, flare, flare_time)
+	if(!flare)
+		powermult = 1
+		rangemult = 1
+		refresh_light_color(ethereal)
+		return
+	powermult = 0.5
+	rangemult = 0.75
+	refresh_light_color(ethereal)
+	start_flicker(ethereal, duration = 1.5 SECONDS, min = 1, max = 2)
+	sleep(1.5 SECONDS)
+	powermult = 1
+	rangemult = 1
+	disrupted = TRUE
+	to_chat(ethereal, span_warning("Your shine flickers and fades."))
+	addtimer(CALLBACK(src, PROC_REF(stop_emp), ethereal), flare_time, TIMER_UNIQUE|TIMER_OVERRIDE)
+
+
+/datum/species/ethereal/proc/start_flicker(mob/living/carbon/human/ethereal, duration = 6 SECONDS, min = 1, max = 4)
+	flickering = TRUE
+	handle_flicker(ethereal, min, max)
+	addtimer(CALLBACK(src, PROC_REF(stop_flicker), ethereal), duration)
+
+/datum/species/ethereal/proc/handle_flicker(mob/living/carbon/human/ethereal, flickmin = 1, flickmax = 4)
+	if(!flickering)
+		currently_flickered = FALSE
+		refresh_light_color(ethereal)
+		return
+	if(currently_flickered)
+		currently_flickered = FALSE
+	else
+		currently_flickered = TRUE
+	refresh_light_color(ethereal)
+	addtimer(CALLBACK(src, PROC_REF(handle_flicker), ethereal), rand(1, 4))
+
+/datum/species/ethereal/proc/stop_flicker(mob/living/carbon/human/ethereal)
+	flickering = FALSE
+	currently_flickered = FALSE
+>>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 
 /datum/species/ethereal/get_features()
 	var/list/features = ..()

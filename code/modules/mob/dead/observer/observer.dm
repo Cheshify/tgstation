@@ -312,6 +312,11 @@ GAME_VERB_DESC(/mob/living, ghost, "Ghost", "Relinquish your life and enter the 
 		if(!HAS_TRAIT(src, TRAIT_CORPSELOCKED)) //corpse-locked have to confirm with the alert below
 			ghostize(TRUE)
 			return TRUE
+	// DOPPLER EDIT ADDITION START - CHANGING ROOM
+	if(HAS_TRAIT(src, TRAIT_FREE_GHOST))
+		ghostize(TRUE) // Can return with TRUE
+		return TRUE
+	// DOPPLER EDIT ADDITION END
 	var/response = tgui_alert(usr, "Are you sure you want to ghost? You won't be able to re-enter your body!", "Confirm Ghost Observe", list("Ghost", "Stay in Body"))
 	if(response != "Ghost")
 		return FALSE//didn't want to ghost after-all

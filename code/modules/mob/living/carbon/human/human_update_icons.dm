@@ -73,6 +73,9 @@ There are several things that need to be remembered:
 //vvvvvv UPDATE_INV PROCS vvvvvv
 
 /mob/living/carbon/human/update_worn_undersuit()
+	// DOPPLER EDIT ADDITION START - This is basically ONLY here to fix breast code as updating uniforms normally does not run update_body_parts(). I hate it here.
+	update_body_parts()
+	// DOPPLER EDIT ADDITION END
 	remove_overlay(UNIFORM_LAYER)
 	hud_used?.update_inventory_slot(ITEM_SLOT_ICLOTHING)
 
@@ -459,6 +462,9 @@ There are several things that need to be remembered:
 	apply_overlay(BELT_LAYER)
 
 /mob/living/carbon/human/update_worn_oversuit()
+	// DOPPLER EDIT ADDITION START - This is basically ONLY here to fix breast code as updating uniforms normally does not run update_body_parts(). I hate it here.
+	update_body_parts()
+	// DOPPLER EDIT ADDITION END
 	remove_overlay(SUIT_LAYER)
 	hud_used?.update_inventory_slot(ITEM_SLOT_OCLOTHING)
 
