@@ -1,7 +1,6 @@
 /datum/job/cook
 	title = JOB_COOK
 	description = "Serve food, cook meat, keep the crew fed."
-	department_head = list(JOB_HEAD_OF_PERSONNEL)
 	faction = FACTION_STATION
 	total_positions = 2
 	spawn_positions = 2
@@ -16,7 +15,7 @@
 	paycheck = PAYCHECK_CREW
 	paycheck_department = ACCOUNT_SRV
 
-	mind_traits = list(TRAIT_DESENSITIZED) // butcher
+	desensitized_base = DESENSITIZED_THRESHOLD // butcher
 	liver_traits = list(TRAIT_CULINARY_METABOLISM)
 
 	display_order = JOB_DISPLAY_ORDER_COOK
@@ -38,6 +37,7 @@
 		/obj/item/reagent_containers/condiment/flour = 7,
 		/obj/item/reagent_containers/condiment/rice = 7,
 		/obj/item/reagent_containers/condiment/ketchup = 7,
+		/obj/item/reagent_containers/condiment/mustard = 7,
 		/obj/item/reagent_containers/condiment/enzyme = 7,
 		/obj/item/reagent_containers/condiment/soymilk = 7,
 		/obj/item/kitchen/spoon/soup_ladle = 6,
@@ -51,6 +51,7 @@
 		JOB_CHEF,
 	)
 	job_flags = STATION_JOB_FLAGS
+	tgui_icon = FA_ICON_UTENSILS
 
 /datum/job/cook/award_service(client/winner, award)
 	winner.give_award(award, winner.mob)
@@ -74,7 +75,7 @@
 		/obj/item/choice_beacon/ingredient = 1,
 		/obj/item/sharpener = 1,
 	)
-	belt = /obj/item/modular_computer/pda/cook
+	belt = /obj/item/modular_computer/pda/crew/cook
 	ears = /obj/item/radio/headset/headset_srv
 	head = /obj/item/clothing/head/utility/chefhat
 	mask = /obj/item/clothing/mask/fakemoustache/italian

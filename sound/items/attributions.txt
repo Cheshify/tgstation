@@ -63,6 +63,7 @@ lead_pipe_hit.ogg - jixaw-metal-pipe-falling-sound.mp3 by thenotcheeseman -- htt
 lead_pipe_drop.ogg - jixaw-metal-pipe-falling-sound.mp3 by thenotcheeseman -- https://freesound.org/s/679206/ -- License: Creative Commons 0
 lead_pipe_pickup.ogg - Metal pipe hitting the ground.flac by CGEffex -- https://freesound.org/s/93962/ -- License: Attribution 4.0
 
+<<<<<<< HEAD
 - collarbell1.ogg (originally collarbell1.ogg)
 - collarbell2.ogg (originally collarbell2.ogg)
 license: published without license
@@ -74,3 +75,12 @@ source: https://github.com/Rotwood-Vale/Ratwood-Keep/pull/1910
 license: "CC-BY-SA-3.0"
 Made and posted by GentleJester#8754 on the SS14 discord.
 source: https://discord.com/channels/310555209753690112/311537926376783886/1097222920813674527
+=======
+- rigstep.ogg
+ported from Aurora (...in turn ported from Hestia), assumed to be licensed under CC-BY-SA 3.0 (no specific attribution found, original repo lost?)
+
+- rigstep_chonk.ogg
+- rigstep_heavy.ogg
+- rigstep_medium.ogg
+ported from Aurora, by majormoth(Discord), licensed under CC-BY-SA-3.0
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68

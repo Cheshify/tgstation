@@ -105,7 +105,7 @@
 	static_lighting = FALSE
 
 	base_lighting_alpha = 255
-	area_flags = NOTELEPORT | HIDDEN_AREA | UNIQUE_AREA
+	area_flags = NOTELEPORT | HIDDEN_AREA
 	ambientsounds = null
 	flags_1 = NONE
 
@@ -113,7 +113,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 
 /obj/effect/landmark/ai_multicam_room
 	name = "ai camera room"
-	icon = 'icons/mob/landmarks.dmi'
+	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x"
 
 /obj/effect/landmark/ai_multicam_room/Initialize(mapload)

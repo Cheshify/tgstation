@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export type Channel =
   | 'Say'
   | 'Radio'
@@ -10,6 +11,9 @@ export type Channel =
   // DOPPLER EDIT ADDITION END
   | 'OOC'
   | 'Admin';
+=======
+export type Channel = 'Say' | 'Radio' | 'Me' | 'OOC' | 'Admin' | 'Pray';
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 
 /**
  * ### ChannelIterator
@@ -19,6 +23,7 @@ export type Channel =
  */
 export class ChannelIterator {
   private index: number = 0;
+<<<<<<< HEAD
   private readonly channels: Channel[] = [
     'Say',
     'Radio',
@@ -32,8 +37,11 @@ export class ChannelIterator {
     'OOC',
     'Admin',
   ];
+=======
+  private readonly channels: Channel[] = ['Say', 'Radio', 'Me', 'OOC', 'Admin', 'Pray'];
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
   private readonly blacklist: Channel[] = ['Admin'];
-  private readonly quiet: Channel[] = ['OOC', 'Admin'];
+  private readonly quiet: Channel[] = ['OOC', 'Admin', 'Pray'];
 
   public next(): Channel {
     if (this.blacklist.includes(this.channels[this.index])) {

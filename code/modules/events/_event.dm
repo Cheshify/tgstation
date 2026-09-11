@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #define RANDOM_EVENT_ADMIN_INTERVENTION_TIME (1 MINUTES) // DOPPLER EDIT, old time: 10 SECONDS
+=======
+#define RANDOM_EVENT_ADMIN_INTERVENTION_TIME (20 SECONDS)
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 
 //this singleton datum is used by the events controller to dictate how it selects events
 /datum/round_event_control

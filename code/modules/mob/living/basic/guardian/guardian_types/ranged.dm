@@ -6,14 +6,14 @@
 	friendly_verb_simple = "quietly assess"
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	damage_coeff = list(BRUTE = 0.9, BURN = 0.9, TOX = 0.9, STAMINA = 0, OXY = 0.9)
+	physiology = list(BRUTE = 0.9, BURN = 0.9, TOX = 0.9, OXY = 0.9, STAMINA = 0)
 	range = 13
 	playstyle_string = span_holoparasite("As a <b>ranged</b> type, you have only light damage resistance, but are capable of spraying shards of crystal at incredibly high speed. You can also deploy surveillance snares to monitor enemy movement. Finally, you can switch to scout mode, in which you can't attack, but can move without limit.")
 	creator_name = "Ranged"
 	creator_desc = "Has two modes. Ranged; which fires a constant stream of weak, armor-ignoring projectiles. Scout; where it cannot attack, but can move through walls and is quite hard to see. Can lay surveillance snares, which alert it when crossed, in either mode."
 	creator_icon = "ranged"
 	see_invisible = SEE_INVISIBLE_LIVING
-	toggle_button_type = /atom/movable/screen/guardian/toggle_mode
+	toggle_button_type = /datum/action/cooldown/guardian/toggle_mode
 
 /mob/living/basic/guardian/ranged/Initialize(mapload, datum/guardian_fluff/theme)
 	. = ..()
@@ -120,6 +120,7 @@
 	button_icon_state = "eye"
 	background_icon = 'icons/hud/guardian.dmi'
 	background_icon_state = "base"
+	default_button_position = ui_guardian_special
 	cooldown_time = 2 SECONDS
 	melee_cooldown_time = 0
 	click_to_activate = FALSE

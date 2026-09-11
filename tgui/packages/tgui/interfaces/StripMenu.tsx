@@ -88,11 +88,38 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
     icon: 'ribbon',
     text: 'Strip accessory',
   },
+<<<<<<< HEAD
   // DOPPLER ADDITION BEGIN - entombed quirk suit reactivation
   entombed_emergency_reactivate: {
     icon: 'power-off',
     text: 'Emergency MODsuit reactivation',
   }, // DOPPLER ADDITION END
+=======
+
+  deploy: {
+    icon: 'plus',
+    text: 'Deploy MOD',
+  },
+
+  undeploy: {
+    icon: 'minus',
+    text: 'Undeploy MOD',
+  },
+
+  activate_mod: {
+    icon: 'power-off',
+    text: 'Activate MOD',
+  },
+  deactivate_mod: {
+    icon: 'power-off',
+    text: 'Deactivate MOD',
+  },
+
+  access_storage: {
+    icon: 'box-open',
+    text: 'Open',
+  },
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 };
 
 const SLOTS: Record<

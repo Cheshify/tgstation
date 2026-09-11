@@ -6,11 +6,28 @@
 
 [![resentment](.github/images/badges/built-with-resentment.svg)](.github/images/comics/131-bug-free.png) [![technical debt](.github/images/badges/contains-technical-debt.svg)](.github/images/comics/106-tech-debt-modified.png) [![forinfinityandbyond](.github/images/badges/made-in-byond.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
+<<<<<<< HEAD
 | Website                   | Link                                           |
 |---------------------------|------------------------------------------------|
 | Website                   | [https://dopplershift13.com](https://dopplershift13.com)          |
 | Discord										| [discord.gg/doppler](discord.gg/doppler)			|
 | Wiki                      | [https://wiki.dopplershift13.com/wiki/Main_Page](https://wiki.dopplershift13.com/wiki/Main_Page)   |
+=======
+| Website             | Link                                                  |
+| ------------------- | ----------------------------------------------------- |
+| Website             | https://tgstation13.org                               |
+| Code                | https://github.com/tgstation/tgstation                |
+| Server Config       | https://github.com/tgstation-operations/server-config |
+| Wiki                | https://tgstation13.org/wiki/Main_Page                |
+| Codedocs            | https://codedocs.tgstation13.org/                     |
+| /tg/station Discord | https://tgstation13.org/phpBB/viewforum.php?f=60      |
+| Coderbus Discord    | https://discord.gg/Vh8TJp9                            |
+| Contribution Guide  | https://github.com/tgstation/tgstation/blob/master/.github/CONTRIBUTING.md |
+| Getting Started With Development | https://hackmd.io/@tgstation/HJ8OdjNBc#tgstation-Development-Guide |
+| Maintainer-Approved Design Docs | https://hackmd.io/@tgstation |
+| Common Core Lore | https://github.com/tgstation/common_core |
+
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 
 
 This is the codebase forked from the [/tg/station](https://github.com/tgstation/tgstation) flavoured fork of SpaceStation 13.
@@ -25,7 +42,10 @@ This is the codebase forked from the [/tg/station](https://github.com/tgstation/
 
 **[How to compile in VSCode and other build options](tools/build/README.md).**
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 ## LICENSE
 
 All code after [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/12/31 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU AGPL v3](https://www.gnu.org/licenses/agpl-3.0.html).

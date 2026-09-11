@@ -63,7 +63,7 @@
 		material = pick(MANNEQUIN_WOOD, MANNEQUIN_PLASTIC)
 	icon_state = "mannequin_[material]_[body_type == FEMALE ? "female" : "male"]"
 	AddElement(/datum/element/strippable, GLOB.strippable_mannequin_items)
-	AddComponent(/datum/component/simple_rotation, ROTATION_IGNORE_ANCHORED)
+	AddElement(/datum/element/simple_rotation, ROTATION_IGNORE_ANCHORED)
 	AddComponent(/datum/component/marionette)
 	update_appearance()
 
@@ -95,6 +95,7 @@
 	var/mutable_appearance/pedestal = mutable_appearance(icon, "pedestal_[material]")
 	pedestal.pixel_z = -3
 	. += pedestal
+<<<<<<< HEAD
 	var/datum/sprite_accessory/underwear/underwear = SSaccessories.underwear_list[underwear_name]
 	if(underwear)
 		if(body_type == FEMALE && underwear.gender == MALE)
@@ -116,6 +117,20 @@
 		. += mutable_appearance(bra.icon, bra.icon_state, -BRA_SOCKS_LAYER)
 	//DOPPLER EDIT END
 
+=======
+	var/datum/sprite_accessory/clothing/underwear/underwear = SSaccessories.underwear_list[underwear_name]
+	var/mutable_appearance/underwear_overlay = underwear?.make_appearance(COLOR_WHITE, body_type, BODYSHAPE_HUMANOID)
+	if(underwear_overlay)
+		. += underwear_overlay
+	var/datum/sprite_accessory/clothing/undershirt/undershirt = SSaccessories.undershirt_list[undershirt_name]
+	var/mutable_appearance/undershirt_overlay = undershirt?.make_appearance(COLOR_WHITE, body_type, BODYSHAPE_HUMANOID)
+	if(undershirt_overlay)
+		. += undershirt_overlay
+	var/datum/sprite_accessory/clothing/socks/socks = SSaccessories.socks_list[socks_name]
+	var/mutable_appearance/socks_overlay = socks?.make_appearance(COLOR_WHITE, body_type, BODYSHAPE_HUMANOID)
+	if(socks_overlay)
+		. += socks_overlay
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 	for(var/slot_flag in worn_items)
 		var/obj/item/worn_item = worn_items[slot_flag]
 		if(!worn_item)
@@ -158,9 +173,11 @@
 
 /obj/structure/mannequin/wood
 	material = MANNEQUIN_WOOD
+	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 25)
 
 /obj/structure/mannequin/plastic
 	material = MANNEQUIN_PLASTIC
+	custom_materials = list(/datum/material/plastic = SHEET_MATERIAL_AMOUNT * 25)
 
 /obj/structure/mannequin/skeleton
 	name = "skeleton model"

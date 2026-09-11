@@ -1,6 +1,6 @@
 import type { BooleanLike } from 'tgui-core/react';
 
-import type { sendAct } from '../../backend';
+import type { sendAct } from '../../events/act';
 import type {
   LoadoutCategory,
   LoadoutList,
@@ -30,7 +30,11 @@ export enum Food {
   Sugar = 'SUGAR',
   Toxic = 'TOXIC',
   Vegetables = 'VEGETABLES',
+<<<<<<< HEAD
   Bloody = 'BLOODY', // DOPPLER EDIT ADDITION - Hemophage Food
+=======
+  Egg = 'EGG',
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 }
 
 export enum JobPriority {
@@ -38,6 +42,12 @@ export enum JobPriority {
   Medium = 2,
   High = 3,
 }
+
+type JobPreference = {
+  job: string;
+  priority: JobPriority | null;
+  assigned_profile_slot: number | null;
+};
 
 export type Name = {
   can_randomize: BooleanLike;
@@ -77,6 +87,7 @@ export type Perk = {
 
 export type Department = {
   head?: string;
+  color?: string;
 };
 
 export type Job = {
@@ -164,10 +175,36 @@ export enum PrefsWindow {
   Keybindings = 2,
 }
 
+export type CharacterPreferencesData = {
+  clothing: Record<string, string>;
+  features: Record<string, string>;
+  game_preferences: Record<string, unknown>;
+  non_contextual: {
+    random_body: RandomSetting;
+    [otherKey: string]: unknown;
+  };
+  secondary_features: Record<string, unknown>;
+  supplemental_features: Record<string, unknown>;
+  manually_rendered_features: Record<string, string>;
+
+  names: Record<string, string>;
+
+  misc: {
+    gender: Gender;
+    joblessrole: JoblessRole;
+    species: string;
+    loadout_list: LoadoutList;
+    job_clothes: BooleanLike;
+  };
+
+  randomization: Record<string, RandomSetting>;
+};
+
 export type PreferencesMenuData = {
   character_preview_view: string;
   character_profiles: (string | null)[];
 
+<<<<<<< HEAD
   preview_options: string[]; // DOPPLER EDIT ADDITION
   preview_selection: string; // DOPPLER EDIT ADDITION
 
@@ -197,6 +234,9 @@ export type PreferencesMenuData = {
 
     randomization: Record<string, RandomSetting>;
   };
+=======
+  character_preferences: CharacterPreferencesData;
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 
   content_unlocked: BooleanLike;
 
@@ -209,7 +249,7 @@ export type PreferencesMenuData = {
       required_playtime: number;
     }
   >;
-  job_preferences: Record<string, JobPriority>;
+  job_preferences: JobPreference[];
 
   // DOPPLER EDIT
   job_alt_titles: Record<string, string>;
@@ -254,6 +294,7 @@ export type ServerData = {
   jobs: {
     departments: Record<string, Department>;
     jobs: Record<string, Job>;
+    jobs_sorted: string[];
   };
   names: {
     types: Record<string, Name>;

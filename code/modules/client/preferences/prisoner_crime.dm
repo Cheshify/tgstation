@@ -3,21 +3,19 @@
 	category = PREFERENCE_CATEGORY_NON_CONTEXTUAL
 	savefile_identifier = PREFERENCE_CHARACTER
 	savefile_key = "prisoner_crime"
+	should_update_preview = FALSE
 
 /datum/preference/choiced/prisoner_crime/init_possible_values()
 	return assoc_to_keys(GLOB.prisoner_crimes) + "Random"
 
-/datum/preference/choiced/prisoner_crime/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/prisoner_crime/apply_to_human(mob/living/carbon/human/target, value, datum/preferences/preferences)
 	return
 
 /datum/preference/choiced/prisoner_crime/create_default_value()
 	return "Random"
 
 /datum/preference/choiced/prisoner_crime/is_accessible(datum/preferences/preferences)
-	if (!..(preferences))
-		return FALSE
-
-	return istype(preferences.get_highest_priority_job(), /datum/job/prisoner)
+	return ..() && highest_priority_job_is(preferences, /datum/job/prisoner)
 
 /// Types of Crimes Prisoners will have on their record roundstart.
 /// (They also can choose Random, which picks from these options... randomly!)

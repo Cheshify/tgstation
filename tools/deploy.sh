@@ -11,6 +11,7 @@ fi
 
 mkdir -p \
     $1/_maps \
+    $1/build/behavior_trees \
     $1/code/datums/greyscale/json_configs \
     $1/data/spritesheets \
     $1/icons \
@@ -33,6 +34,7 @@ find modular_doppler/modular_cosmetics/GAGS/json_configs -name \*.json -exec cp 
 # DOPPLER EDIT ADDITION END
 cp tgstation.dmb tgstation.rsc $1/
 cp -r _maps/* $1/_maps/
+cp -r build/behavior_trees/* $1/build/behavior_trees/
 cp -r code/datums/greyscale/json_configs/* $1/code/datums/greyscale/json_configs/
 cp -r icons/* $1/icons/
 cp -r sound/runtime/* $1/sound/runtime/

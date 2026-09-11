@@ -16,8 +16,13 @@
 	limb_id = SPECIES_MOTH
 	is_dimorphic = TRUE
 	should_draw_greyscale = FALSE
+<<<<<<< HEAD
 	wing_types = list(/obj/item/organ/wings/functional/moth/megamoth, /obj/item/organ/wings/functional/moth/mothra)
 //	bodypart_traits = list(TRAIT_TACKLING_WINGED_ATTACKER) // DOPPLER EDIT REMOVAL
+=======
+	wing_types = list(/obj/item/organ/wings/megamoth, /obj/item/organ/wings/mothra)
+	bodypart_traits = list(TRAIT_TACKLING_WINGED_ATTACKER)
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 
 /obj/item/bodypart/chest/moth/get_butt_sprite()
 	return icon('icons/mob/butts.dmi', BUTT_SPRITE_FUZZY)

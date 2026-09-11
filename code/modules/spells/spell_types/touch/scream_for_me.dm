@@ -27,8 +27,13 @@
 	if(!ishuman(victim))
 		return
 	var/mob/living/carbon/human/human_victim = victim
+<<<<<<< HEAD
 	human_victim.painful_scream() // DOPPLER EDIT: check for painkilling before screaming
 	for(var/obj/item/bodypart/to_wound as anything in human_victim.bodyparts)
+=======
+	human_victim.emote("scream")
+	for(var/obj/item/bodypart/to_wound as anything in human_victim.get_bodyparts())
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 		human_victim.cause_wound_of_type_and_severity(WOUND_SLASH, to_wound, WOUND_SEVERITY_MODERATE, WOUND_SEVERITY_CRITICAL)
 	return TRUE
 

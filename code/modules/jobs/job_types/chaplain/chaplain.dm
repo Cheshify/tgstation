@@ -2,7 +2,6 @@
 	title = JOB_CHAPLAIN
 	description = "Hold services and funerals, cremate people, preach your \
 		religion, protect the crew against cults."
-	department_head = list(JOB_HEAD_OF_PERSONNEL)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
@@ -13,7 +12,8 @@
 	outfit = /datum/outfit/job/chaplain
 	plasmaman_outfit = /datum/outfit/plasmaman/chaplain
 
-	mind_traits = list(TRAIT_SPIRITUAL, TRAIT_DESENSITIZED)
+	mind_traits = list(TRAIT_SPIRITUAL)
+	desensitized_base = DESENSITIZED_THRESHOLD
 
 	paycheck = PAYCHECK_CREW
 	paycheck_department = ACCOUNT_SRV
@@ -37,6 +37,7 @@
 	voice_of_god_power = 2 //Chaplains are very good at speaking with the voice of god
 
 	job_tone = "holy"
+	tgui_icon = FA_ICON_CROSS
 
 
 /datum/job/chaplain/after_spawn(mob/living/spawned, client/player_client)
@@ -79,7 +80,7 @@
 					holy_bible.deity_name = pick("Dick Powers", "King Cock")
 				else
 					holy_bible.deity_name = pick("Gay Space Jesus", "Gandalf", "Dumbledore")
-			human_spawned.adjustOrganLoss(ORGAN_SLOT_BRAIN, 100) // starts off brain damaged as fuck
+			human_spawned.adjust_organ_loss(ORGAN_SLOT_BRAIN, 100) // starts off brain damaged as fuck
 		if("lol", "wtf", "poo", "badmin", "shitmin", "deadmin", "meme", "memes", "skibidi")
 			new_bible = pick("Woody's Got Wood: The Aftermath", "Sweet Bro and Hella Jeff: Expanded Edition","F.A.T.A.L. Rulebook", "Toilet Humor")
 			switch(new_bible)
@@ -91,7 +92,7 @@
 					holy_bible.deity_name = "Twenty Ten-Sided Dice"
 				if("Toilet Humor")
 					holy_bible.deity_name = pick("Skibidi Toilet", "Skibidi Wizard", "Skibidi Bathtub", "John Skibidi", "Skibidi Skibidi", "G-Toilet 1.0", "John Freeman")
-			human_spawned.adjustOrganLoss(ORGAN_SLOT_BRAIN, 100) // also starts off brain damaged as fuck
+			human_spawned.adjust_organ_loss(ORGAN_SLOT_BRAIN, 100) // also starts off brain damaged as fuck
 		if("servicianism", "partying")
 			holy_bible.desc = "Happy, Full, Clean. Live it and give it."
 		if("weeaboo","kawaii")
@@ -123,7 +124,7 @@
 		/obj/item/camera/spooky = 1,
 		/obj/item/stamp/chap = 1,
 		)
-	belt = /obj/item/modular_computer/pda/chaplain
+	belt = /obj/item/modular_computer/pda/crew/chaplain
 	ears = /obj/item/radio/headset/headset_srv
 
 	backpack = /obj/item/storage/backpack/cultpack

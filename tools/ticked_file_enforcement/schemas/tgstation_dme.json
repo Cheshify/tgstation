@@ -1,11 +1,20 @@
 {
 	"file": "tgstation.dme",
-	"scannable_directory": "code/",
+	"scannable_directory": "*/",
 	"subdirectories": true,
 	"excluded_files": [],
 	"forbidden_includes": [
 		"code/modules/tgs/**/*.dm",
 		"code/modules/unit_tests/[!_]*.dm",
+<<<<<<< HEAD
 		"code/modules/unit_tests/~doppler/[!_]*.dm"
+=======
+		"DMCompiler_linux-x64/*.dm",
+		"tools/ci/od_lints.dm",
+		"tools/HubMigrator/HubMigrator.dm",
+		"tools/CatchUnescapedBrackets/*.dm",
+		"tools/SS13SmoothingCutter/*.dm",
+		"tools/ScrollAnimationAssembler/*.dm"
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 	]
 }

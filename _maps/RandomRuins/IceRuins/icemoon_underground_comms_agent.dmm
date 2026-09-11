@@ -502,7 +502,7 @@
 /obj/structure/closet/crate/freezer,
 /obj/item/food/grown/potato,
 /obj/item/food/grown/potato,
-/obj/item/food/grown/carrot,
+/obj/item/food/grown/carrotlike/carrot,
 /obj/item/food/grown/onion,
 /obj/item/food/grown/garlic,
 /turf/open/floor/iron/white,
@@ -667,9 +667,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood/parquet,
 /area/ruin/comms_agent)
+<<<<<<< HEAD
 "KQ" = (
 /turf/open/misc/asteroid/snow/icemoon,
 /area/template_noop)
+=======
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 "KR" = (
 /obj/effect/baseturf_helper/asteroid/snow,
 /turf/closed/wall,
@@ -2879,9 +2882,15 @@ MH
 MH
 MH
 MH
+<<<<<<< HEAD
 kA
 kA
 KQ
+=======
+MH
+MH
+OM
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 tl
 YX
 YX
@@ -2936,9 +2945,15 @@ MH
 MH
 MH
 MH
+<<<<<<< HEAD
 kA
 KQ
 KQ
+=======
+MH
+OM
+OM
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 tl
 tl
 MH
@@ -2993,10 +3008,17 @@ OM
 MH
 MH
 MH
+<<<<<<< HEAD
 kA
 KQ
 KQ
 KQ
+=======
+MH
+OM
+OM
+OM
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 tl
 tl
 MH
@@ -3051,9 +3073,14 @@ OM
 OM
 MH
 MH
+<<<<<<< HEAD
 kA
 KQ
 KQ
+=======
+OM
+OM
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 tl
 MH
 MH
@@ -3110,7 +3137,7 @@ sB
 MH
 MH
 MH
-KQ
+OM
 MH
 MH
 OM

@@ -23,6 +23,7 @@
 	id = "lust"
 	description = "Not exactly what you expected."
 	suffix = "icemoon_surface_lust.dmm"
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/asteroid
 	name = "Ice-Ruin Asteroid Site"
@@ -85,11 +86,22 @@
 	description = "A manufacturing and packaging facility producing insulated gloves."
 	suffix = "icemoon_surface_gloves.dmm"
 
+<<<<<<< HEAD
 /datum/map_template/ruin/icemoon/lavaland // DOPPLER EDIT TO NOT BE UNDERGROUND
 	name = "Ice-Ruin Lavaland Incursion"
 	id = "lavalandsite"
 	description = "I guess we never really left you huh?"
 	suffix = "icemoon_underground_lavaland.dmm"
+=======
+/datum/map_template/ruin/icemoon/shoe_facotry
+	name = "Ice-Ruin Shoe Factory"
+	id = "shoe_factory"
+	description = "An abandoned shoe factory."
+	prefix = "_maps/RandomRuins/AnywhereRuins/"
+	suffix = "shoe_factory.dmm"
+	allow_duplicates = FALSE
+	cost = 10
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 
 // above and below ground together
 
@@ -100,6 +112,7 @@
 	suffix = "icemoon_surface_mining_site.dmm"
 	always_place = TRUE
 	always_spawn_with = list(/datum/map_template/ruin/icemoon/underground/mining_site_below = PLACE_BELOW)
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/mining_site_below
 	name = "Ice-Ruin Mining Site Underground"
@@ -108,6 +121,7 @@
 	suffix = "icemoon_underground_mining_site.dmm"
 	has_ceiling = FALSE
 	unpickable = TRUE
+	enclosed_for_terrain = TRUE
 
 // below ground only
 
@@ -121,18 +135,21 @@
 	id = "abandonedvillage"
 	description = "Who knows what lies within?"
 	suffix = "icemoon_underground_abandoned_village.dmm"
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/library
 	name = "Ice-Ruin Buried Library"
 	id = "buriedlibrary"
 	description = "A once grand library, now lost to the confines of the Ice Moon."
 	suffix = "icemoon_underground_library.dmm"
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/wrath
 	name = "Ice-Ruin Ruin of Wrath"
 	id = "wrath"
 	description = "You'll fight and fight and just keep fighting."
 	suffix = "icemoon_underground_wrath.dmm"
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/hermit
 	name = "Ice-Ruin Frozen Shack"
@@ -140,6 +157,16 @@
 	description = "A place of shelter for a lone hermit, scraping by to live another day."
 	suffix = "icemoon_underground_hermit.dmm"
 
+<<<<<<< HEAD
+=======
+/datum/map_template/ruin/icemoon/underground/lavaland
+	name = "Ice-Ruin Lavaland Incursion"
+	id = "lavalandsite"
+	description = "I guess we never really left you huh?"
+	suffix = "icemoon_underground_lavaland.dmm"
+	enclosed_for_terrain = TRUE
+
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 /datum/map_template/ruin/icemoon/underground/puzzle
 	name = "Ice-Ruin Ancient Puzzle"
 	id = "puzzle"
@@ -171,6 +198,7 @@
 	id = "mailroom"
 	description = "This is where all of your paychecks went. Signed, the management."
 	suffix = "icemoon_underground_mailroom.dmm"
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/biodome
 	name = "Ice-Ruin Syndicate Bio-Dome"
@@ -195,6 +223,7 @@
 	id = "syndie_lab"
 	description = "A small laboratory and living space for Syndicate agents."
 	suffix = "icemoon_underground_syndielab.dmm"
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/o31
 	name = "Ice-Ruin Outpost 31"
@@ -215,6 +244,7 @@
 	id = "hotsprings"
 	description = "Just relax and take a dip, nothing will go wrong, I swear!"
 	suffix = "icemoon_underground_hotsprings.dmm"
+	enclosed_for_terrain = TRUE
 
 /datum/map_template/ruin/icemoon/underground/vent
 	name = "Ice-Ruin Icemoon Ore Vent"

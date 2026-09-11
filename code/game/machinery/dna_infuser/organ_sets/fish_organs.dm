@@ -6,7 +6,6 @@
 /// Currently liver, stomach, lungs and tail plus tongue
 #define FISH_INFUSION_ALL_ORGANS 4
 
-///bonus of the observing gondola: you can ignore environmental hazards
 /datum/status_effect/organ_set_bonus/fish
 	id = "organ_set_bonus_fish"
 	tick_interval = 1 SECONDS
@@ -27,7 +26,7 @@
 		TRAIT_WATER_ADAPTATION,
 		)
 	bonus_biotype = MOB_AQUATIC
-	limb_overlay = /datum/bodypart_overlay/texture/fishscale
+	limb_texture = /datum/bodypart_texture/fishscale
 	/// Are we at all five organs?
 	var/color_active = FALSE
 
@@ -39,12 +38,10 @@
 	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_IS_WET), SIGNAL_REMOVETRAIT(TRAIT_IS_WET)), PROC_REF(update_wetness))
 	RegisterSignals(owner, COMSIG_LIVING_GET_PERCEIVED_FOOD_QUALITY, PROC_REF(get_perceived_food_quality))
 
-	if(ishuman(owner))
-		var/mob/living/carbon/human/human = owner
-		//Fish is slightly weaker to being cooked. oh oh.
-		human.physiology.burn_mod *= 1.15
-		human.physiology.heat_mod *= 1.15
-		human.physiology.damage_resistance += 8 //base 8% damage resistance, much wow.
+	//Fish is slightly weaker to being cooked. oh oh.
+	MODIFY_PHYSIOLOGY(owner, BURN, 1.15)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HEAT, 1.15)
+	owner.damage_resistance += 8 //base 8% damage resistance, much wow.
 	if(!HAS_TRAIT(owner, TRAIT_IS_WET))
 		apply_debuff()
 	else
@@ -70,11 +67,9 @@
 	else
 		REMOVE_TRAIT(owner, TRAIT_GRABRESISTANCE, TRAIT_STATUS_EFFECT(id))
 	owner.clear_mood_event("fish_organs_bonus")
-	if(ishuman(owner))
-		var/mob/living/carbon/human/human = owner
-		human.physiology.burn_mod /= 1.15
-		human.physiology.heat_mod /= 1.15
-		human.physiology.damage_resistance -= 8
+	MODIFY_PHYSIOLOGY(owner, BURN, 1 / 1.15)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HEAT, 1 / 1.15)
+	owner.damage_resistance -= 8
 	if(HAS_TRAIT(owner, TRAIT_IS_WET) && istype(owner.get_organ_slot(ORGAN_SLOT_EXTERNAL_TAIL), /obj/item/organ/tail/fish))
 		remove_speed_buff()
 	owner.mind?.adjust_experience(/datum/skill/fishing, -SKILL_EXP_JOURNEYMAN, silent = TRUE)
@@ -93,7 +88,7 @@
 
 	if (new_value >= FISH_INFUSION_ALL_ORGANS && tail_color)
 		if (!color_active)
-			for(var/obj/item/bodypart/limb as anything in carbon_owner.bodyparts)
+			for(var/obj/item/bodypart/limb as anything in carbon_owner.get_bodyparts())
 				limb.add_color_override(tail_color, LIMB_COLOR_FISH_INFUSION)
 			color_active = TRUE
 		return
@@ -101,7 +96,7 @@
 	if (!color_active)
 		return
 
-	for(var/obj/item/bodypart/limb as anything in carbon_owner.bodyparts)
+	for(var/obj/item/bodypart/limb as anything in carbon_owner.get_bodyparts())
 		limb.remove_color_override(LIMB_COLOR_FISH_INFUSION)
 	color_active = FALSE
 
@@ -134,7 +129,7 @@
 	if(!bonus_active || !HAS_TRAIT(owner, TRAIT_IS_WET))
 		return
 	owner.adjust_bodytemperature(-2 * seconds_between_ticks, min_temp = owner.get_body_temp_normal())
-	owner.adjustStaminaLoss(-1.5 * seconds_between_ticks)
+	owner.adjust_stamina_loss(-1.5 * seconds_between_ticks)
 
 /datum/status_effect/organ_set_bonus/fish/proc/update_wetness(datum/source)
 	SIGNAL_HANDLER
@@ -151,31 +146,25 @@
 	REMOVE_TRAIT(owner, TRAIT_GRABRESISTANCE, REF(src))
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/fish_waterless)
 	owner.add_mood_event("fish_organs_bonus", /datum/mood_event/fish_waterless)
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/human = owner
-	human.physiology.burn_mod *= 1.5
-	human.physiology.heat_mod *= 1.2
-	human.physiology.brute_mod *= 1.1
-	human.physiology.stun_mod *= 1.1
-	human.physiology.knockdown_mod *= 1.1
-	human.physiology.stamina_mod *= 1.1
-	human.physiology.damage_resistance -= 16 //from +8% to -8%
+	MODIFY_PHYSIOLOGY(owner, BURN, 1.5)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HEAT, 1.2)
+	MODIFY_PHYSIOLOGY(owner, BRUTE, 1.1)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_STUN, 1.1)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_KNOCKDOWN, 1.1)
+	MODIFY_PHYSIOLOGY(owner, STAMINA, 1.1)
+	owner.damage_resistance -= 16 // This should bring the resistance from +8% to -8%
 
 /datum/status_effect/organ_set_bonus/fish/proc/remove_debuff()
 	ADD_TRAIT(owner, TRAIT_GRABRESISTANCE, TRAIT_STATUS_EFFECT(id)) //harder to grab when wet.
 	owner.remove_movespeed_modifier(/datum/movespeed_modifier/fish_waterless)
 	owner.add_mood_event("fish_organs_bonus", /datum/mood_event/fish_water)
-	if(!ishuman(owner))
-		return
-	var/mob/living/carbon/human/human = owner
-	human.physiology.burn_mod /= 1.5
-	human.physiology.heat_mod /= 1.2
-	human.physiology.brute_mod /= 1.1
-	human.physiology.stun_mod /= 1.1
-	human.physiology.knockdown_mod /= 1.1
-	human.physiology.stamina_mod /= 1.1
-	human.physiology.damage_resistance += 16 //from -8% to +8%
+	MODIFY_PHYSIOLOGY(owner, BURN, 1 / 1.5)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_HEAT, 1 / 1.2)
+	MODIFY_PHYSIOLOGY(owner, BRUTE, 1 / 1.1)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_STUN, 1 / 1.1)
+	MODIFY_PHYSIOLOGY(owner, PHYS_COEFF_KNOCKDOWN, 1 / 1.1)
+	MODIFY_PHYSIOLOGY(owner, STAMINA, 1 / 1.1)
+	owner.damage_resistance += 16
 
 /datum/status_effect/organ_set_bonus/fish/proc/check_tail(mob/living/carbon/source, obj/item/organ/organ, special)
 	SIGNAL_HANDLER
@@ -220,7 +209,7 @@
 	greyscale_colors = FISH_ORGAN_COLOR
 
 	bodypart_overlay = /datum/bodypart_overlay/mutant/tail/fish
-	dna_block = /datum/dna_block/feature/tail_fish
+	dna_block = /datum/dna_block/feature/accessory/tail_fish
 	wag_flags = NONE
 	organ_traits = list(TRAIT_FLOPPING, TRAIT_SWIMMER)
 	restyle_flags = EXTERNAL_RESTYLE_FLESH
@@ -284,13 +273,21 @@
 /datum/bodypart_overlay/mutant/tail/fish
 	feature_key = FEATURE_TAIL_FISH
 	color_source = ORGAN_COLOR_OVERRIDE
+	draw_on_husks = HUSK_OVERLAY_GRAYSCALE
+	mesh_in_suits = TRUE
 
 /datum/bodypart_overlay/mutant/tail/fish/on_mob_insert(obj/item/organ/parent, mob/living/carbon/receiver)
 	//Initialize the related dna feature block if we don't have any so it doesn't error out.
 	//This isn't tied to any species, but I kinda want it to be mutable instead of having a fixed sprite accessory.
+<<<<<<< HEAD
 	if(imprint_on_next_insertion && !receiver.dna.features[FEATURE_TAIL_FISH])
 		receiver.dna.features[FEATURE_TAIL_FISH] = /datum/sprite_accessory/tails/fish/none::name // DOPPLER EDIT, old code: receiver.dna.features[FEATURE_TAIL_FISH] = pick(SSaccessories.tails_list_fish)
 		receiver.dna.update_uf_block(/datum/dna_block/feature/tail_fish)
+=======
+	if(imprint_on_next_insertion && !receiver.dna.features[feature_key])
+		receiver.dna.features[feature_key] = pick(SSaccessories.feature_list[feature_key])
+		receiver.dna.update_uf_block(/datum/dna_block/feature/accessory/tail_fish)
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 
 	return ..()
 
@@ -300,18 +297,6 @@
 		return bodypart_owner.draw_color
 	else //otherwise get one from a set of faded out blue and some greys colors.
 		return pick("#B4B8DD", "#85C7D0", "#67BBEE", "#2F4450", "#55CCBB", "#999FD0", "#345066", "#585B69", "#7381A0", "#B6DDE5", "#4E4E50")
-
-/datum/bodypart_overlay/mutant/tail/fish/get_global_feature_list()
-	return SSaccessories.tails_list_fish
-
-/datum/bodypart_overlay/mutant/tail/fish/get_image(image_layer, obj/item/bodypart/limb)
-	var/mutable_appearance/appearance = ..()
-	// We add all appearances the parent bodypart has to the tail to inherit scales and fancy effects
-	// but most other organs don't want to inherit those so we do it here and not on parent
-	for (var/datum/bodypart_overlay/texture/texture in limb.bodypart_overlays)
-		if(texture.can_draw_on_bodypart(limb, limb.owner))
-			texture.modify_bodypart_appearance(appearance)
-	return appearance
 
 ///Lungs that replace the need of oxygen with water vapor or being wet
 /obj/item/organ/lungs/fish
@@ -336,7 +321,6 @@
 /obj/item/organ/lungs/fish/Initialize(mapload)
 	. = ..()
 	add_gas_reaction(/datum/gas/water_vapor, always = PROC_REF(breathe_water))
-	respiration_type |= RESPIRATION_OXYGEN //after all, we get oxygen from water
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/fish)
 	if(has_gills)
 		gills = new()
@@ -377,12 +361,12 @@
 		breathe_gas_volume(breath, /datum/gas/water_vapor, /datum/gas/carbon_dioxide)
 	// Heal mob if not in crit.
 	if(breather.health >= breather.crit_threshold && breather.oxyloss)
-		breather.adjustOxyLoss(-5)
+		breather.adjust_oxy_loss(-5)
 
 /// Called when there isn't enough water to breath
 /obj/item/organ/lungs/proc/on_low_water(mob/living/carbon/breather, datum/gas_mixture/breath, water_pp) // DOPPLER EDIT, old code: /obj/item/organ/lungs/fish/proc/on_low_water(mob/living/carbon/breather, datum/gas_mixture/breath, water_pp)
 	breather.throw_alert(ALERT_NOT_ENOUGH_WATER, /atom/movable/screen/alert/not_enough_water)
-	var/gas_breathed = handle_suffocation(breather, water_pp, safe_water_level, breath.gases[/datum/gas/water_vapor][MOLES])
+	var/gas_breathed = handle_suffocation(breather, water_pp, safe_water_level, breath.moles[/datum/gas/water_vapor])
 	if(water_pp)
 		breathe_gas_volume(breath, /datum/gas/water_vapor, /datum/gas/carbon_dioxide, volume = gas_breathed)
 
@@ -390,13 +374,14 @@
 /datum/bodypart_overlay/simple/gills
 	icon = 'icons/mob/human/fish_features.dmi'
 	icon_state = "gills"
-	layers = EXTERNAL_ADJACENT
+	layers = list(EXTERNAL_ADJACENT = BODY_ADJ_LAYER)
+	draw_on_husks = HUSK_OVERLAY_GRAYSCALE
 
-/datum/bodypart_overlay/simple/gills/get_image(image_layer, obj/item/bodypart/limb)
+/datum/bodypart_overlay/simple/gills/get_image(obj/item/bodypart/limb, layer_index, layer_real)
 	return image(
 		icon = icon,
-		icon_state = "[icon_state]_[mutant_bodyparts_layertext(image_layer)]",
-		layer = image_layer,
+		icon_state = "[icon_state]_[layer_index]",
+		layer = layer_real,
 	)
 
 /// Subtype of gills that allow the mob to optionally breathe water.
@@ -470,6 +455,37 @@
 	icon = 'icons/obj/medical/organs/infuser_organs.dmi'
 	icon_state = "inky_tongue"
 	actions_types = list(/datum/action/cooldown/ink_spit)
+	/**
+	 * This is probably the most complex tts filter that won't require external files to be added to the tts image.
+	 * It works as follows:
+	 * 1. Increase the pitch of the input audio. Pitch increase is lower for higher speaker pitch and vice-versa.
+	 * 2. Apply a mid-heavy EQ curve.
+	 * 3. Using an oscillating target frequency:
+	 *   - Apply a low pass filter with its cutoff at the target frequency
+	 *   - Boost frequencies very close to the target frequency
+	 */
+	voice_filter = "\
+	rubberband=pitch='\
+		ifnot(%BLIPS%,\
+			2-(%PITCH%+if(%FEMALE%,4))/16\
+			,1)'\
+	:formant=preserved,\
+	highpass=f=1000:t=s:w=24,\
+	equalizer=f=1200:g=15,\
+	equalizer=f=4350:g=-15,\
+	highshelf=f=870:g=1,\
+	afftfilt=\
+		real='\
+			st(0,(b+0.5)/nb*sr);\
+			st(1,3000+1500*sin(9.3*2*PI*pts));\
+			st(2,ld(0)/ld(1));\
+			re*(1-ld(2)^2+2*gauss(log(ld(2)+1)))'\
+		:imag='\
+			st(0,(b+0.5)/nb*sr);\
+			st(1,3000+1500*sin(9.3*2*PI*pts));\
+			st(2,ld(0)/ld(1));\
+			im*(1-ld(2)^2+2*gauss(log(ld(2)+1)))'\
+		:win_size=1024"
 
 	// Seafood instead of meat, because it's a fish organ
 	foodtype_flags = RAW | SEAFOOD | GORE
@@ -500,7 +516,6 @@
 	organ_traits = list(TRAIT_TETRODOTOXIN_HEALING, TRAIT_ALCOHOL_TOLERANCE) //drink like a fish :^)
 	liver_resistance = parent_type::liver_resistance * 1.5
 	food_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue = 5, /datum/reagent/iron = 5, /datum/reagent/toxin/tetrodotoxin = 5)
-	grind_results = list(/datum/reagent/consumable/nutriment/peptides = 5, /datum/reagent/toxin/tetrodotoxin = 5)
 
 	// Seafood instead of meat, because it's a fish organ
 	foodtype_flags = RAW | SEAFOOD | GORE
@@ -510,6 +525,9 @@
 /obj/item/organ/liver/fish/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/fish)
+
+/obj/item/organ/liver/fish/grind_results()
+	return list(/datum/reagent/consumable/nutriment/peptides = 5, /datum/reagent/toxin/tetrodotoxin = 5)
 
 #undef FISH_ORGAN_COLOR
 #undef FISH_SCLERA_COLOR

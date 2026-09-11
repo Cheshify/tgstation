@@ -17,10 +17,36 @@
 	end_message = span_notice("The air seems to be cooling off again.")
 
 	area_type = /area
+<<<<<<< HEAD
 	protected_areas = list(/area/station/maintenance, /area/station/ai_monitored/turret_protected/ai_upload, /area/station/ai_monitored/turret_protected/ai_upload_foyer,
 							/area/station/ai_monitored/turret_protected/aisat/maint, /area/station/ai_monitored/command/storage/satellite,
 							/area/station/ai_monitored/turret_protected/ai, /area/station/commons/storage/emergency/starboard, /area/station/commons/storage/emergency/port,
 							/area/shuttle, /area/station/security/prison/safe, /area/station/security/prison/toilet, /area/mine/maintenance, /area/icemoon/underground, /area/ruin/comms_agent/maint, /area/ruin, /area/ruin/unpowered/primitive_genemod_den) /// DOPPLER SHIFT EDIT: adding ruins as protected areas, hearthkin explicitly protected
+=======
+	protected_areas = list(
+		// General areas
+		/area/station/maintenance, // This is where we tell people to go
+		/area/shuttle, // Would be quite rude
+
+		// AI
+		/area/station/ai/satellite/maintenance, // Duh...
+		/area/station/ai/upload,
+		/area/station/ai/satellite/chamber,
+
+		// Rad shelters
+		/area/station/commons/storage/emergency/starboard,
+		/area/station/commons/storage/emergency/port,
+
+		// Prison
+		/area/station/security/prison/safe,
+		/area/station/security/prison/toilet,
+
+		// Off-station
+		/area/mine/maintenance,
+		/area/ruin/comms_agent/maint,
+		/area/icemoon/underground,
+	)
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 	target_trait = ZTRAIT_STATION
 
 	immunity_type = TRAIT_RADSTORM_IMMUNE
@@ -63,7 +89,8 @@
 	return ..()
 
 /datum/weather/rad_storm/end()
-	if(..())
+	. = ..()
+	if(!.)
 		return
 	priority_announce("The radiation threat has passed. Please return to your workplaces.", "Anomaly Alert")
 	status_alarm(FALSE)

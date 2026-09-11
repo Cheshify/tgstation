@@ -1,6 +1,6 @@
 ///MOD Module - A special device installed in a MODsuit allowing the suit to do new stuff.
 /obj/item/mod/module
-	name = "MOD module"
+	name = "\improper MOD module"
 	icon = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	icon_state = "module"
 	abstract_type = /obj/item/mod/module
@@ -35,6 +35,10 @@
 	var/overlay_state_use
 	/// Icon file for the overlay.
 	var/overlay_icon_file = 'icons/mob/clothing/modsuit/mod_modules.dmi'
+	/// Overlay given to the item icon of the control unit
+	var/overlay_state_item
+	/// Icon file for the item overlay
+	var/item_overlay_icon_file = 'icons/obj/clothing/modsuit/mod_modules.dmi'
 	/// Does the overlay use the control unit's colors?
 	var/use_mod_colors = FALSE
 	/// What modules are we incompatible with?
@@ -240,7 +244,7 @@
 	if(!(allow_flags & MODULE_ALLOW_INCAPACITATED) && INCAPACITATED_IGNORING(mod.wearer, INCAPABLE_GRAB))
 		return FALSE
 	mod.wearer.face_atom(target)
-	if(!used())
+	if(!used() || (SEND_SIGNAL(target, COMSIG_ATOM_MOD_MODULE_USED, src) & COMPONENT_INTERRUPT_MODULE_USE))
 		return FALSE
 	return TRUE
 
@@ -377,7 +381,7 @@
 		qdel(src)
 
 /// Adds the worn overlays to the suit.
-/obj/item/mod/module/proc/add_module_overlay(obj/item/source, list/overlays, mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file)
+/obj/item/mod/module/proc/add_module_overlay(obj/item/source, list/overlays, mutable_appearance/standing, mutable_appearance/draw_target, isinhands, icon_file, bodyshape = NONE)
 	SIGNAL_HANDLER
 
 	if (isinhands)
@@ -459,13 +463,10 @@
 	deactivate()
 	return COMSIG_KB_ACTIVATED
 
-///Anomaly Locked - Causes the module to not function without an anomaly.
+///Anomaly Locked - Mostly just a wrapper for modules that don't need to descend from any other module but need the anomaly_locked_module component
 /obj/item/mod/module/anomaly_locked
-	name = "MOD anomaly locked module"
+	name = "\improper MOD anomaly locked module"
 	desc = "A form of a module, locked behind an anomalous core to function."
-	incompatible_modules = list()
-	/// The core item the module runs off.
-	var/obj/item/assembly/signaler/anomaly/core
 	/// Accepted types of anomaly cores.
 	var/list/accepted_anomalies = list(/obj/item/assembly/signaler/anomaly)
 	/// If this one starts with a core in.
@@ -475,6 +476,7 @@
 
 /obj/item/mod/module/anomaly_locked/Initialize(mapload)
 	. = ..()
+<<<<<<< HEAD
 	if(!prebuilt || !length(accepted_anomalies))
 		return
 	var/core_path = pick(accepted_anomalies)
@@ -560,3 +562,6 @@
 /obj/item/mod/module/anomaly_locked/update_icon_state()
 	icon_state = initial(icon_state) + (core ? "-core" : "")
 	return ..()
+=======
+	AddComponent(/datum/component/anomaly_locked_module, accepted_anomalies, prebuilt, core_removable)
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68

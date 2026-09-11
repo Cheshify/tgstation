@@ -1,15 +1,24 @@
-/atom/movable/screen/ghost
-	icon = 'icons/hud/screen_ghost.dmi'
-	mouse_over_pointer = MOUSE_HAND_POINTER
 
-/atom/movable/screen/ghost/MouseEntered(location, control, params)
+/datum/hud/ghost
+	ui_style = 'icons/hud/screen_ghost.dmi'
+
+/datum/hud/ghost/initialize_screen_objects()
 	. = ..()
-	flick(icon_state + "_anim", src)
+	add_screen_object(/atom/movable/screen/ghost/spawners_menu, HUD_GHOST_SPAWNERS)
+	add_screen_object(/atom/movable/screen/ghost/orbit, HUD_GHOST_ORBIT)
+	add_screen_object(/atom/movable/screen/ghost/reenter_corpse, HUD_GHOST_REENTER_CORPSE)
+	add_screen_object(/atom/movable/screen/ghost/dnr, HUD_GHOST_DNR)
+	add_screen_object(/atom/movable/screen/ghost/teleport, HUD_GHOST_TELEPORT)
+	add_screen_object(/atom/movable/screen/ghost/settings, HUD_GHOST_SETTINGS)
+	add_screen_object(/atom/movable/screen/ghost/minigames_menu, HUD_GHOST_MINIGAMES)
+	add_screen_object(/atom/movable/screen/language_menu, HUD_MOB_LANGUAGE_MENU, HUD_GROUP_STATIC, ui_style, ui_ghost_language_menu)
+	add_screen_object(/atom/movable/screen/floor_changer/vertical, HUD_MOB_FLOOR_CHANGER, HUD_GROUP_STATIC, ui_style, ui_ghost_floor_changer)
 
-/atom/movable/screen/ghost/spawners_menu
-	name = "Spawners menu"
-	icon_state = "spawners"
+	var/list/hudboxes = valid_subtypesof(/atom/movable/screen/ghost/hudbox)
+	for(var/i in 1 to length(hudboxes))
+		add_screen_object(hudboxes[i], HUD_KEY_GHOST_HUDBOX(i), ui_loc = position_hudbox(i - 1))
 
+<<<<<<< HEAD
 /atom/movable/screen/ghost/spawners_menu/Click()
 	var/mob/dead/observer/observer = usr
 	observer.open_spawners_menu()
@@ -110,6 +119,12 @@
 	floor_change = new /atom/movable/screen/floor_changer/vertical/ghost(null, src)
 	floor_change.screen_loc = ui_ghost_floor_changer
 	static_inventory += floor_change
+=======
+/datum/hud/ghost/proc/position_hudbox(i)
+	var/row = floor(i / 3)
+	var/column = i % 3
+	return "SOUTH:[6 + row * 16], CENTER+5:[7 + column * 15]"
+>>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 
 /datum/hud/ghost/show_hud(version = 0, mob/viewmob)
 	// don't show this HUD if observing; show the HUD of the observee
@@ -123,13 +138,15 @@
 		return
 	var/mob/screenmob = viewmob || mymob
 	if(screenmob.client.prefs.read_preference(/datum/preference/toggle/ghost_hud))
-		screenmob.client.screen += static_inventory
+		screenmob.client.screen |= screen_groups[HUD_GROUP_STATIC]
+		for(var/atom/movable/screen/ghost/hudbox/hud in screen_groups[HUD_GROUP_STATIC])
+			hud.update_appearance()
 	else
-		screenmob.client.screen -= static_inventory
+		screenmob.client.screen -= screen_groups[HUD_GROUP_STATIC]
 
 //We should only see observed mob alerts.
 /datum/hud/ghost/reorganize_alerts(mob/viewmob)
 	var/mob/dead/observer/O = mymob
 	if (istype(O) && O.observetarget)
 		return
-	. = ..()
+	return ..()
