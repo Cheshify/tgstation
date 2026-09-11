@@ -245,11 +245,8 @@ GLOBAL_LIST_INIT(organ_process_order, list(
 	ORGAN_SLOT_XENO_ACIDGLAND,
 	ORGAN_SLOT_XENO_NEUROTOXINGLAND,
 	ORGAN_SLOT_XENO_EGGSAC,
-<<<<<<< HEAD
 	ORGAN_SLOT_FANGS,
-=======
 	ORGAN_SLOT_PSYKER, // DOPPLER ADDITION: Adds the psyker organ from powers to organ lists.
->>>>>>> 6898fe164841263a012a7e3868a4a63498ec592e
 ))
 
 // Defines for used in creating "perks" for the species preference pages.
