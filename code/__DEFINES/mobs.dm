@@ -35,37 +35,6 @@
 /// Temperature at which blood loss and regen stops. [/mob/living/carbon/human/proc/handle_blood]
 #define BLOOD_STOP_TEMP 225
 
-<<<<<<< HEAD
-// Bloodtype defines
-#define BLOOD_TYPE_A_MINUS "A-"
-#define BLOOD_TYPE_A_PLUS "A+"
-#define BLOOD_TYPE_B_MINUS "B-"
-#define BLOOD_TYPE_B_PLUS "B+"
-#define BLOOD_TYPE_AB_MINUS "AB-"
-#define BLOOD_TYPE_AB_PLUS "AB+"
-#define BLOOD_TYPE_O_MINUS "O-"
-#define BLOOD_TYPE_O_PLUS "O+"
-#define BLOOD_TYPE_UNIVERSAL "U"
-#define BLOOD_TYPE_LIZARD "L"
-#define BLOOD_TYPE_VAMPIRE "V"
-#define BLOOD_TYPE_ANIMAL "Y-"
-#define BLOOD_TYPE_ETHEREAL "LE"
-#define BLOOD_TYPE_TOX "TOX"
-#define BLOOD_TYPE_OIL "Oil"
-#define BLOOD_TYPE_MEAT "MT-"
-#define BLOOD_TYPE_CLOWN "C"
-#define BLOOD_TYPE_XENO "X*"
-#define BLOOD_TYPE_H2O "H2O"
-#define BLOOD_TYPE_SNAIL "S"
-// DOPPLER ADDITIONS:
-#define BLOOD_TYPE_INSECTOID "HMT"
-#define BLOOD_TYPE_SYNTHETIC "CL"
-#define BLOOD_TYPE_HEMOPHAGE "COR"
-#define BLOOD_TYPE_HOLOGEL "HOLO"
-#define BLOOD_TYPE_SAP "SAP"
-
-=======
->>>>>>> e7bc2fec00cb80b46430a38abca984960aa0da68
 // Blood exposure behavior flag defines
 /// Add our DNA to turfs/mobs/items, does not correlate with adding decals/overlays
 /// mob/turf/item flags will add DNA when triggered even if this flag is false
